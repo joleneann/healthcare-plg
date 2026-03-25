@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amplify: Get Started</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+  <script>WebFont.load({ google: { families: ["Zalando Sans:300,400,500,600,700","Inter:400,500,600,700"] }});</script>
+  <style>
+    @font-face { font-family:'Gilroy'; src:url('https://cdn.prod.website-files.com/698239b291275032e3e718d0/6992ff89cbda3186b0181ad3_Gilroy-Medium.woff2') format('woff2'); font-weight:500; font-display:swap; }
+    @font-face { font-family:'Gilroy'; src:url('https://cdn.prod.website-files.com/698239b291275032e3e718d0/699300561870cd7c1b84b23c_Gilroy-SemiBold.woff') format('woff'); font-weight:600; font-display:swap; }
+    @font-face { font-family:'Gilroy'; src:url('https://cdn.prod.website-files.com/698239b291275032e3e718d0/6992fef8f0f43b9a39bb80c6_Gilroy-Regular.woff') format('woff'); font-weight:400; font-display:swap; }
+    @font-face { font-family:'Fragment Mono'; src:url('https://cdn.prod.website-files.com/698239b291275032e3e718d0/698239b491275032e3e71aca_FragmentMono-Regular.ttf') format('truetype'); font-weight:400; font-display:swap; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config={theme:{extend:{colors:{base:'#F8F6F3',elevated:'#FFFFFF',floating:'#EDE9E3',border:'rgba(200,195,185,0.35)','purple-core':'#9432FD','purple-light':'#C693FE','purple-glow':'rgba(148,50,253,0.2)','purple-subtle':'rgba(148,50,253,0.06)','text-primary':'#0B0F1A','text-secondary':'#4A5578','text-muted':'#8B95B0'},fontFamily:{display:['Gilroy','"Zalando Sans"','system-ui','sans-serif'],body:['"Zalando Sans"','Inter','system-ui','sans-serif'],mono:['"Fragment Mono"','monospace']}}}};
+  </script>
+  <style>
+    *{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+    body{background:#F8F6F3;background-image:radial-gradient(ellipse 80% 60% at 8% 0%,rgba(148,50,253,0.08) 0%,transparent 50%),radial-gradient(ellipse 50% 50% at 92% 85%,rgba(148,50,253,0.06) 0%,transparent 50%),radial-gradient(ellipse 70% 50% at 50% 40%,rgba(198,147,254,0.035) 0%,transparent 55%);background-attachment:fixed;}
+    ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#D0CBC3;border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:#9432FD;}
+
+    .card-shadow{box-shadow:0 1px 3px rgba(148,50,253,0.04),0 6px 16px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.8);}
+    .card-shadow-lg{box-shadow:0 2px 6px rgba(148,50,253,0.05),0 12px 32px rgba(148,50,253,0.07),0 20px 48px rgba(0,0,0,0.04),inset 0 1px 0 rgba(255,255,255,0.85);}
+    .card-shadow-glow{box-shadow:0 0 0 1px rgba(148,50,253,0.12),0 8px 24px rgba(148,50,253,0.1),0 16px 40px rgba(148,50,253,0.05);}
+    .glass-card{background:rgba(255,255,255,0.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+    /* gradient text removed per user request */
+
+    .screen-panel{display:none;opacity:0;transform:translateY(8px);}
+    .screen-panel.active{display:flex;animation:fadeSlideIn 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+    .seg-block{opacity:0;max-height:0;overflow:hidden;transition:opacity 0.45s ease,max-height 0.55s cubic-bezier(0.34,1.2,0.64,1),margin 0.45s ease;margin-top:0;}
+    .seg-block.revealed{opacity:1;max-height:260px;margin-top:24px;}
+    .seg-question{opacity:0;max-height:0;overflow:hidden;transition:opacity 0.4s ease,max-height 0.5s cubic-bezier(0.34,1.2,0.64,1);}
+    .seg-question.revealed{opacity:1;max-height:200px;}
+    .seg-pill-e{padding:10px 18px;border-radius:12px;font-size:14px;font-weight:500;border:1.5px solid rgba(200,195,185,0.4);background:#fff;color:#0B0F1A;cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.2,0.64,1),border-color 0.2s ease,background 0.2s ease,box-shadow 0.2s ease;box-shadow:0 1px 3px rgba(0,0,0,0.04);}
+    .seg-pill-e:hover{border-color:rgba(148,50,253,0.35);background:rgba(148,50,253,0.04);transform:translateY(-1px);box-shadow:0 3px 8px rgba(148,50,253,0.08);}
+    .seg-pill-e:active{transform:scale(0.97);}
+    .seg-pill-e.selected{background:#9432FD;color:#fff;border-color:#9432FD;box-shadow:0 0 0 3px rgba(148,50,253,0.15),0 4px 12px rgba(148,50,253,0.25);transform:translateY(-1px);}
+    .seg-pill-e:focus-visible{outline:2px solid #9432FD;outline-offset:2px;}
+    .seg-progress-seg{height:5px;flex:1;border-radius:99px;background:rgba(160,150,140,0.35);overflow:hidden;transition:background 0.3s ease;}
+    .seg-progress-seg .fill{width:0;height:100%;border-radius:99px;background:linear-gradient(90deg,#C693FE,#9432FD);transition:width 0.6s cubic-bezier(0.34,1.2,0.64,1);}
+    .seg-progress-seg.done .fill{width:100%;}
+    .seg-progress-seg.done{animation:segPulse 0.4s cubic-bezier(0.34,1.56,0.64,1);}
+    @keyframes segPulse{0%{transform:scaleY(1);}40%{transform:scaleY(1.8);}100%{transform:scaleY(1);}}
+    #seg-continue-wrap{opacity:0;max-height:0;overflow:hidden;transition:opacity 0.45s ease,max-height 0.5s cubic-bezier(0.34,1.2,0.64,1);}
+    #seg-continue-wrap.revealed{opacity:1;max-height:200px;}
+
+    .custom-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238B95B0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:42px;}
+    .custom-select:focus,.form-input:focus{border-color:#9432FD;box-shadow:0 0 0 3px rgba(148,50,253,0.1);outline:none;}
+
+    .pill-step{transition:background-color 0.4s ease;}
+    .pill-step.active{background:#9432FD;}
+
+    .btn-shimmer{position:relative;overflow:hidden;}
+    .btn-shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.6s ease;}
+    .btn-shimmer:hover::after{left:120%;}
+
+    /* JTBD pills */
+    .jtbd-pill.selected{background:#9432FD !important;color:white !important;border-color:#9432FD !important;}
+    .jtbd-pill:focus-visible{outline:2px solid #9432FD;outline-offset:2px;}
+    .rec-badge{display:none;font-size:9px;font-weight:700;letter-spacing:0.05em;color:#9432FD;background:rgba(148,50,253,0.08);padding:1px 6px;border-radius:99px;}
+    .mod-tab.recommended .rec-badge{display:inline-block;}
+
+    /* Module tabs */
+    .mod-tab{transition:background-color 0.2s ease,border-color 0.2s ease,color 0.2s ease;border-left:3px solid transparent;cursor:pointer;}
+    .mod-tab:hover{background:rgba(148,50,253,0.03);border-left-color:rgba(148,50,253,0.3);}
+    .mod-tab.active{background:rgba(148,50,253,0.06);border-left-color:#9432FD;color:#9432FD;font-weight:600;}
+
+    /* Preview transition */
+    .preview-panel{display:none;opacity:0;transform:translateY(6px);}
+    .preview-panel.active{display:block;animation:fadeSlideIn 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+
+    /* Mockup styles */
+    .mockup-shell{background:#FFFFFF;border:1px solid rgba(200,195,185,0.35);border-radius:16px;overflow:hidden;}
+    .mockup-topbar{background:#FAFAF8;border-bottom:1px solid rgba(200,195,185,0.25);padding:10px 16px;display:flex;align-items:center;gap:8px;}
+    .mockup-dot{width:8px;height:8px;border-radius:50%;}
+    .mockup-row{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(200,195,185,0.15);transition:background 0.2s ease;}
+    .mockup-row:last-child{border-bottom:none;}
+    .mockup-row:hover{background:rgba(148,50,253,0.02);}
+    .mockup-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:600;}
+
+    /* Strategy tips */
+    .strategy-tip .tip-content{display:none;position:relative;width:100%;padding:16px 20px;background:linear-gradient(135deg,rgba(148,50,253,0.06),rgba(148,50,253,0.015));border:1px solid rgba(148,50,253,0.12);border-left:3px solid #9432FD;border-radius:10px;font-size:12.5px;line-height:1.7;color:#4A5578;margin-top:16px;}
+    .strategy-tip.visible .tip-content{display:block;animation:fadeSlideIn 0.3s ease forwards;}
+    .strategy-tip .tip-label{font-family:'Fragment Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:#9432FD;margin-bottom:8px;font-weight:600;}
+
+    .step-btn-active{background:#9432FD !important;color:white !important;box-shadow:0 2px 10px rgba(148,50,253,0.35);}
+
+    @keyframes celebrateScale{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.12);}100%{transform:scale(1);opacity:1;}}
+    .celebrate-in{animation:celebrateScale 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+    @keyframes sendingPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
+    .sending-pulse{animation:sendingPulse 1.2s ease-in-out infinite;}
+    .progress-fill{transition:width 0.8s cubic-bezier(0.34,1.2,0.64,1);background:linear-gradient(90deg,#C693FE,#9432FD) !important;}
+    @keyframes gentlePulse{0%,100%{box-shadow:0 0 0 0 rgba(148,50,253,0.35);}50%{box-shadow:0 0 0 12px rgba(148,50,253,0);}}
+    .pulse-ring{animation:gentlePulse 2s ease-in-out infinite;}
+
+    .checklist-item{transition:transform 0.25s cubic-bezier(0.34,1.2,0.64,1),box-shadow 0.25s ease;border-left:3px solid transparent;}
+    .checklist-item:hover{transform:translateX(4px);box-shadow:0 8px 28px rgba(148,50,253,0.1);border-left-color:#9432FD;}
+    .strength-bar{transition:width 0.3s ease,background-color 0.3s ease;}
+
+    .dot-pattern::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0.35;background-image:radial-gradient(circle,rgba(148,50,253,0.06) 1px,transparent 1px);background-size:28px 28px;}
+
+    /* Video player */
+    .video-player{position:relative;border-radius:12px;overflow:hidden;background:#0B0F1A;}
+    .video-player .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(148,50,253,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+    .video-player .play-btn:hover{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 24px rgba(148,50,253,0.4);}
+    .video-progress{height:3px;background:rgba(255,255,255,0.15);border-radius:2px;position:absolute;bottom:12px;left:12px;right:12px;}
+    .video-progress-fill{height:100%;width:35%;background:#9432FD;border-radius:2px;}
+  </style>
+</head>
+<body class="font-body text-text-primary min-h-screen bg-base">
+
+  <!-- DEMO BAR -->
+  <div class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-border">
+    <div class="max-w-[1200px] mx-auto px-6 py-2.5 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="text-[10px] font-mono text-purple-core uppercase tracking-[0.15em] font-semibold">PLG Signup Flow</span>
+        <div class="w-px h-4 bg-border"></div>
+        <div class="flex gap-1 bg-floating/60 p-1 rounded-lg">
+          <button onclick="goToScreen(1)" data-step-btn="1" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Sign Up</button>
+          <button onclick="goToScreen(2)" data-step-btn="2" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Your Work</button>
+          <button onclick="goToScreen(3)" data-step-btn="3" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Try Amplify</button>
+          <button onclick="goToScreen(4)" data-step-btn="4" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Sandbox</button>
+          <button onclick="goToScreen(5)" data-step-btn="5" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Explore</button>
+        </div>
+      </div>
+      <button onclick="toggleAnnotations()" id="annotationToggle" class="px-3 py-1.5 rounded-md text-xs font-medium text-purple-core border border-purple-core/30 hover:bg-purple-subtle transition-all duration-200">
+        <svg class="inline w-3.5 h-3.5 mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Strategy Notes
+      </button>
+    </div>
+  </div>
+
+  <div class="pt-[56px] min-h-screen flex flex-col">
+
+    <!-- ===== SCREEN 1: SIGN UP ===== -->
+    <div id="screen-1" class="screen-panel active flex-1 flex-col items-center justify-center px-4 py-16">
+      <div class="w-full max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative">
+        <!-- Left: value prop -->
+        <div class="hidden lg:block relative">
+          <div class="absolute -top-20 -left-20 w-[400px] h-[400px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(148,50,253,0.1) 0%,transparent 65%);"></div>
+          <div class="relative z-10">
+            <img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/699304f4c97657e72c942df6_c243f7912c98c6ee15d4b18190b7f6f4_amplify-dark-logo.svg" alt="Amplify" class="h-8 mb-8" style="filter:brightness(0) saturate(100%);" />
+            <h1 class="font-display text-5xl font-semibold text-text-primary leading-[1.1]" style="letter-spacing:-0.04em;">Every document handled. Every workflow, automated.</h1>
+            <p class="text-lg text-text-secondary mt-5 leading-relaxed max-w-md">Fax, e-signature, secure messaging, and AI document processing, unified in one HIPAA-compliant system. Because documents are just the beginning of the work.</p>
+            <div class="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-floating border border-border mt-8">
+              <svg class="w-3.5 h-3.5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+              <span class="text-xs font-medium text-text-secondary">No credit card required</span>
+            </div>
+          </div>
+        </div>
+        <!-- Right: signup form -->
+        <div class="w-full max-w-[420px] mx-auto lg:mx-0">
+          <div class="lg:hidden text-center mb-8">
+            <img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/699304f4c97657e72c942df6_c243f7912c98c6ee15d4b18190b7f6f4_amplify-dark-logo.svg" alt="Amplify" class="h-7 mx-auto mb-5" style="filter:brightness(0) saturate(100%);" />
+            <h1 class="font-display text-3xl font-semibold text-text-primary leading-tight" style="letter-spacing:-0.03em;">Start your free trial</h1>
+          </div>
+          <div class="glass-card rounded-2xl border border-border card-shadow-lg p-10">
+            <h2 class="hidden lg:block font-display text-2xl font-semibold text-text-primary mb-6" style="letter-spacing:-0.02em;">Start your free trial</h2>
+            <div class="flex gap-3">
+              <button class="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl border border-border bg-white hover:bg-base transition-colors duration-200 active:scale-[0.97]"><svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg><span class="text-sm font-medium text-text-primary">Google</span></button>
+              <button class="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl border border-border bg-white hover:bg-base transition-colors duration-200 active:scale-[0.97]"><svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#00A4EF" d="M11.4 24H0V12.6h11.4V24z"/><path fill="#FFB900" d="M11.4 11.4H0V0h11.4v11.4z"/><path fill="#F25022" d="M24 11.4H12.6V0H24v11.4z"/><path fill="#7FBA00" d="M24 24H12.6V12.6H24V24z"/></svg><span class="text-sm font-medium text-text-primary">Microsoft</span></button>
+            </div>
+            <div class="flex items-center gap-3 my-6"><div class="flex-1 h-px bg-border"></div><span class="text-xs text-text-muted">or continue with email</span><div class="flex-1 h-px bg-border"></div></div>
+            <div class="space-y-4">
+              <div><label for="nameInput" class="block text-sm font-medium text-text-primary mb-1.5">Full name</label><input id="nameInput" type="text" autocomplete="name" autofocus placeholder="Jane Smith" class="form-input w-full px-4 py-3.5 rounded-xl border border-border bg-white text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"/></div>
+              <div><label for="emailInput" class="block text-sm font-medium text-text-primary mb-1.5">Email</label><input id="emailInput" type="email" autocomplete="email" placeholder="you@yourclinic.com" class="form-input w-full px-4 py-3.5 rounded-xl border border-border bg-white text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"/></div>
+              <div><label for="passwordInput" class="block text-sm font-medium text-text-primary mb-1.5">Password</label><input type="password" id="passwordInput" autocomplete="new-password" oninput="updatePwStr()" placeholder="Create a password" class="form-input w-full px-4 py-3.5 rounded-xl border border-border bg-white text-sm text-text-primary placeholder:text-text-muted transition-colors duration-200"/><div class="flex gap-1 mt-2"><div id="str1" class="strength-bar h-1 rounded-full bg-floating flex-1"></div><div id="str2" class="strength-bar h-1 rounded-full bg-floating flex-1"></div><div id="str3" class="strength-bar h-1 rounded-full bg-floating flex-1"></div><div id="str4" class="strength-bar h-1 rounded-full bg-floating flex-1"></div></div><p id="strTxt" class="text-[11px] text-text-muted mt-1"></p></div>
+            </div>
+            <button id="signupBtn" onclick="handleSignup()" class="btn-shimmer w-full mt-7 px-6 py-4 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Get Started Free</button>
+            <p class="text-center text-[11px] text-text-muted mt-4">By signing up, you agree to our <a href="#" class="text-purple-core hover:opacity-80">Terms of Service</a> and <a href="#" class="text-purple-core hover:opacity-80">Privacy Policy</a>.</p>
+            <div class="flex items-center justify-center gap-4 mt-4">
+              <span class="inline-flex items-center gap-1 text-[10px] text-text-muted"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>HIPAA</span>
+              <span class="inline-flex items-center gap-1 text-[10px] text-text-muted"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>SOC 2</span>
+              <span class="inline-flex items-center gap-1 text-[10px] text-text-muted"><svg class="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>4.8/5 on G2</span>
+            </div>
+            <p class="text-center text-sm text-text-secondary mt-5">Already have an account? <a href="#" class="text-purple-core font-medium hover:opacity-80">Sign in</a></p>
+          </div>
+          <p class="text-center text-xs text-text-muted mt-4">Enterprise? <a href="#" class="text-purple-core hover:opacity-80">Talk to our team</a></p>
+        </div>
+      </div>
+      <div class="strategy-tip max-w-[1000px] mx-auto mt-10"><div class="tip-content"><div class="tip-label">PLG Strategy: Signup</div><p><strong>Split layout</strong> gives the form breathing room while the left side sells with social proof (G2 4.8/5) and compliance trust signals. <strong>Personal email accepted</strong> , work email is captured post-activation (Screen 4), not here. Requiring work email at signup loses individual practitioners and small clinics. Conversion to work email is <strong>3x higher</strong> after the user has experienced value. <strong>SSO buttons</strong> (Google/Microsoft) serve dual purpose: convenience + enterprise detection. A @largeclinic.org Microsoft login is a PQL signal for sales-assist.</p></div></div>
+    </div>
+
+    <!-- ===== SCREEN 2: YOUR WORK ===== -->
+    <!-- Fixed progress bar for Screen 2 (visible when scrolled, outside screen panels) -->
+    <div id="seg-fixed-progress" class="fixed left-0 right-0 z-[51] py-2.5 opacity-0 pointer-events-none transition-opacity duration-300" style="top:44px;background:rgba(255,255,255,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 6px rgba(0,0,0,0.06);">
+      <div class="flex gap-2 w-full max-w-[220px] mx-auto" style="height:5px;">
+        <div class="seg-progress-seg" style="height:5px;background:rgba(180,170,160,0.3);" data-seg-prog-fixed="industry"><div class="fill" style="height:5px;"></div></div>
+        <div class="seg-progress-seg" style="height:5px;background:rgba(180,170,160,0.3);" data-seg-prog-fixed="role"><div class="fill" style="height:5px;"></div></div>
+        <div class="seg-progress-seg" style="height:5px;background:rgba(180,170,160,0.3);" data-seg-prog-fixed="size"><div class="fill" style="height:5px;"></div></div>
+        <div class="seg-progress-seg" style="height:5px;background:rgba(180,170,160,0.3);" data-seg-prog-fixed="title"><div class="fill" style="height:5px;"></div></div>
+      </div>
+    </div>
+
+    <div id="screen-2" class="screen-panel flex-1 flex-col items-center px-4 py-16">
+      <div class="w-full max-w-[480px] mx-auto">
+        <div class="text-center mb-8">
+          <img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/699304f4c97657e72c942df6_c243f7912c98c6ee15d4b18190b7f6f4_amplify-dark-logo.svg" alt="Amplify" class="h-6 mx-auto mb-5" style="filter:brightness(0) saturate(100%);" />
+          <h1 class="font-display text-3xl font-semibold text-text-primary leading-tight" style="letter-spacing:-0.04em;">Let's set up your experience</h1>
+          <p class="text-sm text-text-secondary mt-2 leading-relaxed">Four quick taps. We'll tailor everything to you.</p>
+          <!-- Inline progress bar (scrolls away, then fixed bar takes over) -->
+          <div id="seg-inline-progress" class="flex gap-1.5 w-full max-w-[220px] mx-auto mt-5" role="progressbar" aria-label="Segmentation progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="4">
+            <div class="seg-progress-seg" data-seg-prog="industry"><div class="fill"></div></div>
+            <div class="seg-progress-seg" data-seg-prog="role"><div class="fill"></div></div>
+            <div class="seg-progress-seg" data-seg-prog="size"><div class="fill"></div></div>
+            <div class="seg-progress-seg" data-seg-prog="title"><div class="fill"></div></div>
+          </div>
+          <p id="seg-progress-label" class="text-[11px] text-text-muted mt-2 transition-opacity duration-300"></p>
+        </div>
+
+        <!-- Skip link always visible -->
+        <div class="text-center mb-6">
+          <button onclick="goToScreen(3)" class="text-sm text-text-muted hover:text-text-secondary transition-colors duration-200">Skip for now</button>
+        </div>
+
+        <!-- Q1: Industry (always visible) -->
+        <div id="seg-block-industry">
+          <p class="font-display text-[16px] font-semibold text-text-primary mb-1" style="letter-spacing:-0.02em;">What field are you in?</p>
+          <p class="text-xs text-text-muted mb-3">Unlocks industry-specific templates and compliance presets</p>
+          <div class="flex flex-wrap gap-2" id="seg-industry-pills" role="radiogroup" aria-label="Select your industry">
+            <button onclick="segPill('industry','healthcare',this)" class="seg-pill seg-pill-e">Healthcare</button>
+            <button onclick="segPill('industry','legal',this)" class="seg-pill seg-pill-e">Legal</button>
+            <button onclick="segPill('industry','government',this)" class="seg-pill seg-pill-e">Government</button>
+            <button onclick="segPill('industry','other',this)" class="seg-pill seg-pill-e">Other</button>
+          </div>
+        </div>
+
+        <!-- Q2: Role (cascades after industry) -->
+        <div id="seg-role-section" class="seg-block" data-seg-block="role">
+          <p class="font-display text-[16px] font-semibold text-text-primary mb-1" style="letter-spacing:-0.02em;">What best describes your role?</p>
+          <p class="text-xs text-text-muted mb-3">Your dashboard and recommended workflows adjust to match</p>
+          <div class="flex flex-wrap gap-2" id="seg-role-pills" role="radiogroup" aria-label="Select your role"></div>
+        </div>
+
+        <!-- Q3: Team size (cascades after role) -->
+        <div id="seg-block-size" class="seg-block" data-seg-block="size">
+          <p class="font-display text-[16px] font-semibold text-text-primary mb-1" style="letter-spacing:-0.02em;">How big is your team?</p>
+          <p class="text-xs text-text-muted mb-3">We'll pre-configure the right collaboration features and plan</p>
+          <div class="flex flex-wrap gap-2" id="seg-size-pills" role="radiogroup" aria-label="Select your team size">
+            <button onclick="segPill('size','solo',this)" class="seg-pill seg-pill-e">Just me</button>
+            <button onclick="segPill('size','2-19',this)" class="seg-pill seg-pill-e">2 &#x2013; 19</button>
+            <button onclick="segPill('size','20-99',this)" class="seg-pill seg-pill-e">20 &#x2013; 99</button>
+            <button onclick="segPill('size','100-249',this)" class="seg-pill seg-pill-e">100 &#x2013; 249</button>
+            <button onclick="segPill('size','250-1k',this)" class="seg-pill seg-pill-e">250 &#x2013; 1k</button>
+            <button onclick="segPill('size','1k+',this)" class="seg-pill seg-pill-e">1,000+</button>
+          </div>
+        </div>
+
+        <!-- Q4: Title (cascades after size) -->
+        <div id="seg-block-title" class="seg-block" data-seg-block="title">
+          <p class="font-display text-[16px] font-semibold text-text-primary mb-1" style="letter-spacing:-0.02em;">What level best fits?</p>
+          <p class="text-xs text-text-muted mb-3">Shapes your onboarding — admin setup vs. daily user workflows</p>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="segPill('title','executive',this)" class="seg-pill seg-pill-e">Executive</button>
+            <button onclick="segPill('title','director',this)" class="seg-pill seg-pill-e">Director</button>
+            <button onclick="segPill('title','manager',this)" class="seg-pill seg-pill-e">Manager</button>
+            <button onclick="segPill('title','owner',this)" class="seg-pill seg-pill-e">Business owner</button>
+            <button onclick="segPill('title','team',this)" class="seg-pill seg-pill-e">Team member</button>
+          </div>
+        </div>
+
+        <!-- Continue button (revealed after enough answers) -->
+        <div id="seg-continue-wrap" class="mt-8">
+          <p class="text-sm font-medium text-purple-core mb-3 text-center" style="animation:fadeSlideIn 0.45s ease forwards;">Your personalized setup is ready</p>
+          <button onclick="goToScreen(3)" class="btn-shimmer w-full px-6 py-4 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Show me my setup</button>
+        </div>
+
+        <div class="strategy-tip mt-8"><div class="tip-content"><div class="tip-label">PLG Strategy: Segmentation</div><p><strong>Progressive reveal</strong> shows one question at a time as pills. Research: multi-step/cascading flows convert 86% higher (HubSpot) and reduce completion time by 20-40% (NNGroup). <strong>Industry + Role</strong> power module recommendation. <strong>Company size + Title</strong> power PQL scoring. <strong>"How did you find us?"</strong> kept in the main cascade as Q5 to close the attribution loop for marketing ROI.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 3: TRY AMPLIFY (Tabs + Preview) ===== -->
+    <div id="screen-3" class="screen-panel flex-1 flex-col items-center px-4 py-8 relative dot-pattern">
+      <div class="w-full max-w-[960px] mx-auto relative z-10">
+        <div class="text-center mb-4">
+          <h1 class="font-display text-3xl font-semibold text-text-primary leading-tight" style="letter-spacing:-0.04em;">What workflow do you want to improve?</h1>
+          <p class="text-sm text-text-secondary mt-1.5 leading-relaxed">Pick your starting point. You can explore everything during your trial.</p>
+        </div>
+
+        <!-- JTBD routing pills -->
+        <div class="flex flex-wrap justify-center gap-2.5 mb-6" id="jtbd-pills" role="radiogroup" aria-label="Select your workflow">
+          <button onclick="jtbdSelect('fax',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">Send &amp; receive docs</button>
+          <button onclick="jtbdSelect('signature',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">Collect signatures</button>
+          <button onclick="jtbdSelect('automate',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">Automate processing</button>
+          <button onclick="jtbdSelect('engage',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">Message securely</button>
+          <button onclick="jtbdSelect('collect',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">Patient intake</button>
+          <button onclick="jtbdSelect('api',this)" class="jtbd-pill px-5 py-3 rounded-xl text-sm font-medium border border-border bg-white hover:border-purple-core/30 hover:bg-purple-subtle/30 transition-all duration-200 cursor-pointer active:scale-95">API</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6">
+          <!-- Left: module tabs -->
+          <div class="flex lg:flex-col gap-1 bg-white/60 backdrop-blur-sm rounded-2xl border border-border card-shadow p-2" role="tablist" aria-label="Product modules">
+            <div onclick="switchPreview('fax')" data-mod-tab="fax" role="tab" aria-selected="true" tabindex="0" class="mod-tab active flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#9432FD" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              <div class="flex flex-col"><span class="text-sm">Fax</span><span class="text-[10px] text-text-muted leading-tight">2,400+ clinics</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+            <div onclick="switchPreview('signature')" data-mod-tab="signature" role="tab" aria-selected="false" tabindex="-1" class="mod-tab flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#7C3AED" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+              <div class="flex flex-col"><span class="text-sm">E-Signature</span><span class="text-[10px] text-text-muted leading-tight">1.2M docs signed</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+            <div onclick="switchPreview('automate')" data-mod-tab="automate" role="tab" aria-selected="false" tabindex="-1" class="mod-tab flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#6366F1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+              <div class="flex flex-col"><span class="text-sm">Automate</span><span class="text-[10px] text-text-muted leading-tight">Fastest growing</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+            <div onclick="switchPreview('engage')" data-mod-tab="engage" role="tab" aria-selected="false" tabindex="-1" class="mod-tab flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#9432FD" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+              <div class="flex flex-col"><span class="text-sm">Engage</span><span class="text-[10px] text-text-muted leading-tight">850+ care teams</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+            <div onclick="switchPreview('collect')" data-mod-tab="collect" role="tab" aria-selected="false" tabindex="-1" class="mod-tab flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#14B8A6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+              <div class="flex flex-col"><span class="text-sm">Collect</span><span class="text-[10px] text-text-muted leading-tight">500K+ forms sent</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+            <div onclick="switchPreview('api')" data-mod-tab="api" role="tab" aria-selected="false" tabindex="-1" class="mod-tab flex items-start gap-3 px-4 py-3.5 rounded-xl">
+              <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style="color:#64748B" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+              <div class="flex flex-col"><span class="text-sm">API</span><span class="text-[10px] text-text-muted leading-tight">99.9% uptime</span><span class="rec-badge">&#10022; Recommended</span></div>
+            </div>
+          </div>
+
+          <!-- Right: product preview -->
+          <div class="glass-card rounded-2xl border border-border card-shadow-lg p-5" role="tabpanel" aria-label="Module preview">
+            <!-- FAX preview -->
+            <div id="preview-fax" class="preview-panel active">
+              <div class="flex items-center justify-between mb-4">
+                <div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">Fax</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">Digital fax with intelligent routing. Send, receive, and track documents across organizations with automatic team assignment and full audit trails. No fax machine needed.</p></div>
+              </div>
+              <div class="rounded-2xl overflow-hidden border border-border shadow"><img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/6995c122e26cbdc4d9df4cb3_be29e0906d1daaf86447419a752ab2e3_fax-tab.png" alt="Amplify Fax inbox" class="w-full max-h-[280px] object-cover object-top" /></div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('fax')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('fax')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+
+            <!-- SIGNATURE preview -->
+            <div id="preview-signature" class="preview-panel">
+              <div class="flex items-center justify-between mb-4"><div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">E-Signature</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">Get documents signed in minutes, not days. HIPAA-compliant e-signatures with real-time tracking, automated reminders, and tamper-proof audit trails for every signature.</p></div></div>
+              <div class="mockup-shell">
+                <div class="mockup-topbar"><div class="mockup-dot" style="background:#7C3AED;opacity:0.6;"></div><div class="mockup-dot" style="background:#7C3AED;opacity:0.3;"></div><div class="mockup-dot" style="background:#7C3AED;opacity:0.15;"></div><span class="text-[10px] text-text-muted ml-2 font-mono">Patient Consent Form.pdf</span></div>
+                <div class="p-6">
+                  <div class="border border-border rounded-lg p-4 mb-4 bg-base/50"><div class="h-2 bg-floating rounded w-full mb-2"></div><div class="h-2 bg-floating rounded w-5/6 mb-2"></div><div class="h-2 bg-floating rounded w-4/6 mb-4"></div><div class="border-2 border-dashed rounded-lg p-3 text-center" style="border-color:#7C3AED40;"><p class="text-xs text-text-muted">Signature Field</p><p class="font-display text-lg italic" style="color:#7C3AED;">Jane Smith</p></div></div>
+                  <div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full" style="background:#7C3AED;"></div><span class="text-xs text-text-secondary">jane@clinic.com</span></div><span class="mockup-badge text-white" style="background:#7C3AED;">Signed</span></div>
+                </div>
+              </div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('signature')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('signature')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+
+            <!-- AUTOMATE preview -->
+            <div id="preview-automate" class="preview-panel">
+              <div class="flex items-center justify-between mb-4"><div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">Automate</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">AI that reads, classifies, and routes documents automatically. Extract patient data, insurance details, and clinical information from every incoming fax. No manual data entry.</p></div></div>
+              <div class="rounded-2xl overflow-hidden border border-border shadow"><img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/6995c122a23067b95e59d9fb_39f68e74c67fc04c85905716d9690514_automate-tab.png" alt="Amplify Automate workflows" class="w-full max-h-[280px] object-cover object-top" /></div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('automate')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('automate')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+
+            <!-- ENGAGE preview -->
+            <div id="preview-engage" class="preview-panel">
+              <div class="flex items-center justify-between mb-4"><div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">Engage</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">Secure messaging that replaces phone tag. Chat, SMS, and email with full HIPAA audit trails, read receipts, and patient-linked conversations. Know exactly who said what, when.</p></div></div>
+              <div class="rounded-2xl overflow-hidden border border-border shadow"><img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/6995c1888ba8e3ff3704d2b3_5ff1bf1f1973175a09d5aed6e5d072e3_engage-tab.png" alt="Amplify Engage chat" class="w-full max-h-[280px] object-cover object-top" /></div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('engage')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('engage')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+
+            <!-- COLLECT preview -->
+            <div id="preview-collect" class="preview-panel">
+              <div class="flex items-center justify-between mb-4"><div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">Collect</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">Patient intake that happens before the visit. Digital forms patients complete on their phones, with real-time insurance verification and direct EHR integration. No more clipboards.</p></div></div>
+              <div class="rounded-2xl overflow-hidden border border-border shadow"><img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/6995c12215e8ed14737a1ecc_3a19fedefd439ab1b7ffc912abea3520_collect-tab.png" alt="Amplify Collect forms" class="w-full max-h-[280px] object-cover object-top" /></div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('collect')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('collect')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+
+            <!-- API preview -->
+            <div id="preview-api" class="preview-panel">
+              <div class="flex items-center justify-between mb-4"><div><h3 class="font-display text-lg font-semibold text-text-primary" style="letter-spacing:-0.02em;">API &amp; Integrations</h3><p class="text-xs text-text-secondary mt-1 leading-relaxed">Build Amplify into your stack. RESTful API with webhooks, batch processing, and pre-built EHR connectors. Every endpoint is HIPAA-compliant with full audit trails.</p></div></div>
+              <div class="mockup-shell">
+                <div class="mockup-topbar"><div class="mockup-dot" style="background:#64748B;opacity:0.6;"></div><div class="mockup-dot" style="background:#64748B;opacity:0.3;"></div><div class="mockup-dot" style="background:#64748B;opacity:0.15;"></div><span class="text-[10px] text-text-muted ml-2 font-mono">API Explorer</span></div>
+                <div class="p-4">
+                  <div class="rounded-lg border border-border bg-base p-4 font-mono text-xs leading-relaxed mb-3"><span class="text-text-muted"># Send a fax</span><br><span class="text-purple-core">POST</span> <span class="text-text-primary">/v1/fax</span><br><br><span class="text-text-muted">Headers:</span><br>&nbsp;&nbsp;Authorization: Bearer <span class="text-purple-core">amp_sk_...</span><br>&nbsp;&nbsp;Content-Type: <span class="text-text-secondary">application/json</span></div>
+                  <div class="rounded-lg border border-border bg-base p-4 font-mono text-xs leading-relaxed"><span class="text-text-muted">Response:</span> <span style="color:#14B8A6;">200 OK</span><br>{<br>&nbsp;&nbsp;"id": "<span class="text-purple-core">fax_9x8k2m</span>",<br>&nbsp;&nbsp;"status": "<span style="color:#14B8A6;">delivered</span>",<br>&nbsp;&nbsp;"pages": <span class="text-text-primary">3</span>,<br>&nbsp;&nbsp;"duration_ms": <span class="text-text-primary">1823</span><br>}</div>
+                </div>
+              </div>
+              <div class="flex gap-3 mt-5"><button onclick="selectMod('api')" class="flex-1 px-5 py-3.5 rounded-xl border-2 border-purple-core text-purple-core text-sm font-semibold hover:bg-purple-subtle active:scale-[0.97] transition-colors duration-200">Try it now</button><button onclick="directSetup('api')" class="btn-shimmer flex-1 px-5 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="strategy-tip mt-10"><div class="tip-content"><div class="tip-label">PLG Strategy: Module Selection</div><p><strong>Jobs-to-be-done routing</strong> at the top reduces cognitive load from 6 choices to 1 recommended path. Clicking a problem auto-selects the matching module and adds a "Recommended" badge. If the user completed segmentation, we auto-recommend based on their industry + role (25-40% higher first-action completion per Chameleon/Appcues research). <strong>Tabs + live preview</strong> mirrors amplify.xyz's own product page pattern. The <strong>product sells itself</strong> , users see what they're getting before committing.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 4: SANDBOX ===== -->
+    <div id="screen-4" class="screen-panel flex-1 flex-col items-center px-4 py-16">
+      <div class="w-full max-w-[960px] mx-auto">
+        <!-- SANDBOX ACTIVE -->
+        <div id="sandbox-active">
+          <div class="text-center mb-8">
+            <div id="sandbox-icon" class="w-14 h-14 rounded-2xl bg-purple-subtle flex items-center justify-center mx-auto mb-4"><svg class="w-7 h-7 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+            <h1 id="sandbox-title" class="font-display text-3xl font-semibold text-text-primary leading-tight" style="letter-spacing:-0.03em;">Send your first fax</h1>
+            <p id="sandbox-subtitle" class="text-sm text-text-secondary mt-2">Experience Amplify's speed. This is your sandbox.</p>
+            <button onclick="goToScreen(5)" class="text-sm text-text-muted hover:text-purple-core transition-colors duration-200 mt-3">Skip to dashboard &rarr;</button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            <!-- Left: sandbox form -->
+            <div>
+
+              <!-- ── FAX SANDBOX ── -->
+              <div id="sb-fax" class="glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono text-purple-core uppercase tracking-widest font-semibold">Compose Fax</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-purple-subtle text-purple-core">Preview Mode</span></div>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">Your Fax Number</label><div class="px-3 py-2.5 rounded-lg border border-border bg-base text-sm text-text-secondary font-mono">(555) 100-7890</div><p class="text-[10px] text-text-muted mt-1">Free sandbox number</p></div>
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">Recipient</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>St. James Hospital , Radiology</option><option>Quest Diagnostics , Lab Results</option><option>Mercy General , Referrals</option><option disabled>Custom number (unlock after trial)</option></select></div>
+                  </div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Document</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Patient Referral (3 pages)</option><option>Prior Authorization Form (2 pages)</option><option>Lab Results Report (1 page)</option><option disabled>Upload custom document (unlock after trial)</option></select></div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">Label</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Referral</option><option>Prior Auth</option><option>Lab Results</option><option>Insurance</option></select></div>
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">After Delivery</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Archive</option><option>Forward to Team</option><option>Flag for Review</option></select></div>
+                  </div>
+                  <div class="flex items-center gap-3 px-3 py-2 rounded-lg bg-purple-subtle/50 border border-purple-core/10"><input type="checkbox" checked class="accent-purple-core w-4 h-4 rounded" /><span class="text-xs text-text-secondary">Include cover page</span><span class="text-[10px] text-text-muted ml-auto">From: You &bull; To: St. James Radiology</span></div>
+                  <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-purple-subtle/30 border border-purple-core/10"><svg class="w-3.5 h-3.5 text-purple-core flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg><span class="text-[10px] text-text-secondary">End-to-end encrypted &bull; HIPAA compliant &bull; Audit trail enabled</span></div>
+                </div>
+                <button onclick="sbSend('fax')" id="sb-fax-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Send Fax</button>
+                <!-- Result area -->
+                <div id="sb-fax-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-fax-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-fax-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono text-purple-core uppercase tracking-widest font-semibold">Delivery Report</span><span class="text-[10px] font-mono text-text-muted" id="sb-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-5"><div id="sb-prog" class="h-full rounded-full progress-fill" style="width:0%"></div></div>
+                    <div id="sb-fax-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2.5 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Fax queued</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2.5 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Transmitting 3 pages</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2.5 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Recipient confirmed</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2.5 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Delivered &bull; Audit logged</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-fax-card" class="hidden mt-4 rounded-xl border-2 border-purple-core/20 bg-purple-subtle/20 p-4">
+                      <div class="flex items-center gap-3 mb-3"><div class="w-10 h-10 rounded-xl bg-purple-core flex items-center justify-center"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><div><p class="text-sm font-semibold text-text-primary">Fax Delivered</p><p class="text-[10px] text-text-muted font-mono">FX-2026-00847 &bull; 3/3 pages &bull; 1.8s</p></div></div>
+                      <div class="rounded-lg border border-purple-core/10 bg-white p-3 text-xs space-y-1.5">
+                        <div class="flex justify-between"><span class="text-text-muted">Recipient</span><span class="text-text-primary">St. James Hospital , Radiology</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Label</span><span class="text-text-primary">Referral</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Routed</span><span class="text-text-primary">Archived</span></div>
+                      </div>
+                      <div class="mt-3 rounded-lg border border-border bg-base p-3"><p class="text-[10px] font-mono text-purple-core mb-1">AI Insight</p><p class="text-xs text-text-secondary">Detected: <strong>Patient Referral</strong>. Extracted patient name, DOB, referring physician. <a href="#" class="text-purple-core font-medium" onclick="event.preventDefault();selectMod('automate')">See in Automate &rarr;</a></p></div>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── E-SIGNATURE SANDBOX ── -->
+              <div id="sb-signature" class="hidden glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#7C3AED;">Prepare Document</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono" style="background:rgba(124,58,237,0.06);color:#7C3AED;">Preview Mode</span></div>
+                <div class="space-y-4">
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Template</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Patient Consent Form</option><option>HIPAA Authorization</option><option>Treatment Agreement</option><option>Release of Information</option></select></div>
+                  <div class="rounded-xl border border-border bg-base p-4"><p class="text-[10px] font-mono text-text-muted mb-2">Document Preview</p><div class="space-y-1.5"><div class="h-2 bg-floating rounded w-full"></div><div class="h-2 bg-floating rounded w-5/6"></div><div class="h-2 bg-floating rounded w-4/6"></div><div class="h-2 bg-floating rounded w-full mt-3"></div><div class="h-2 bg-floating rounded w-3/4"></div></div><div class="mt-3 border-2 border-dashed rounded-lg p-2.5 text-center" style="border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.04);"><p class="text-[10px] text-text-muted">Signature Field</p></div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Signer</label><div class="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-border bg-white"><div class="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold" style="background:#7C3AED;">JS</div><div class="flex-1"><p class="text-xs font-medium text-text-primary">Jane Smith (Patient)</p><p class="text-[10px] text-text-muted">jane.smith@sandbox.amplify.xyz</p></div></div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Required Fields</label><div class="flex flex-wrap gap-2"><span class="px-2 py-1 rounded text-[10px] font-medium bg-purple-subtle text-purple-core">&#10003; Full Name</span><span class="px-2 py-1 rounded text-[10px] font-medium bg-purple-subtle text-purple-core">&#10003; Date of Birth</span><span class="px-2 py-1 rounded text-[10px] font-medium bg-purple-subtle text-purple-core">&#10003; Signature</span><span class="px-2 py-1 rounded text-[10px] font-medium bg-purple-subtle text-purple-core">&#10003; Date</span><span class="px-2 py-1 rounded text-[10px] font-medium bg-floating text-text-muted">Insurance ID</span></div></div>
+                </div>
+                <button onclick="sbSend('signature')" id="sb-signature-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Send for Signature</button>
+                <!-- Result area -->
+                <div id="sb-signature-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-signature-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-signature-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#7C3AED;">Signing Status</span><span class="text-[10px] font-mono text-text-muted" id="sb-sig-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-5"><div id="sb-sig-prog" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#C4B5FD,#7C3AED);transition:width 0.8s ease;"></div></div>
+                    <div id="sb-sig-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Envelope created</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Email sent to jane.smith@sandbox</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Document opened</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Signature applied</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Completed &amp; sealed</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-sig-card" class="hidden mt-4 rounded-xl border-2 bg-base p-4" style="border-color:rgba(124,58,237,0.2);">
+                      <div class="rounded-lg border border-border bg-white p-4 mb-3"><div class="space-y-1.5"><div class="h-2 bg-floating rounded w-full"></div><div class="h-2 bg-floating rounded w-5/6"></div><div class="h-2 bg-floating rounded w-4/6"></div></div><div class="mt-3 border-2 rounded-lg p-2 text-center" style="border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.04);"><p class="font-display text-lg italic" style="color:#7C3AED;">Jane Smith</p><p class="text-[10px] text-text-muted">Signed Mar 24, 2026 10:04 AM</p></div></div>
+                      <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-[10px] font-mono" style="background:rgba(124,58,237,0.05);color:#7C3AED;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>Tamper-evident seal &bull; SHA-256 hash verified</div>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── AUTOMATE SANDBOX ── -->
+              <div id="sb-automate" class="hidden glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#6366F1;">Choose Workflow</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono" style="background:rgba(99,102,241,0.06);color:#6366F1;">Preview Mode</span></div>
+                <div class="space-y-3">
+                  <label class="block rounded-xl border-2 border-purple-core/20 bg-purple-subtle/20 p-4 cursor-pointer"><input type="radio" name="wf" checked class="accent-purple-core mr-2" /><span class="text-sm font-medium text-text-primary">Referral Processing</span><p class="text-xs text-text-secondary mt-1 ml-6">Incoming referral &rarr; Extract patient data &rarr; Route to intake team</p></label>
+                  <label class="block rounded-xl border border-border bg-white p-4 cursor-pointer hover:border-purple-core/20 transition-colors"><input type="radio" name="wf" class="accent-purple-core mr-2" /><span class="text-sm font-medium text-text-primary">Prior Auth Triage</span><p class="text-xs text-text-secondary mt-1 ml-6">New prior auth &rarr; Check requirements &rarr; Flag gaps &rarr; Submit</p></label>
+                  <label class="block rounded-xl border border-border bg-white p-4 cursor-pointer hover:border-purple-core/20 transition-colors"><input type="radio" name="wf" class="accent-purple-core mr-2" /><span class="text-sm font-medium text-text-primary">Lab Result Routing</span><p class="text-xs text-text-secondary mt-1 ml-6">Lab results received &rarr; Classify by type &rarr; Route to physician</p></label>
+                </div>
+                <div class="mt-4 flex items-center justify-between px-4 py-3 rounded-xl border border-border bg-base"><div class="flex items-center gap-8"><div class="text-center"><div class="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1" style="background:rgba(99,102,241,0.1);"><span class="text-[10px] font-mono font-bold" style="color:#6366F1;">PDF</span></div><p class="text-[9px] text-text-muted">Receive</p></div><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg><div class="text-center"><div class="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1" style="background:rgba(99,102,241,0.1);"><svg class="w-4 h-4" style="color:#6366F1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg></div><p class="text-[9px] text-text-muted">Classify</p></div><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg><div class="text-center"><div class="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1" style="background:rgba(99,102,241,0.1);"><svg class="w-4 h-4" style="color:#6366F1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div><p class="text-[9px] text-text-muted">Extract</p></div><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg><div class="text-center"><div class="w-8 h-8 rounded-lg flex items-center justify-center mx-auto mb-1" style="background:rgba(99,102,241,0.1);"><svg class="w-4 h-4" style="color:#6366F1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></div><p class="text-[9px] text-text-muted">Route</p></div></div></div>
+                <button onclick="sbSend('automate')" id="sb-automate-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Run Automation</button>
+                <!-- Result area -->
+                <div id="sb-automate-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-automate-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-automate-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#6366F1;">Results</span><span class="text-[10px] font-mono text-text-muted" id="sb-auto-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-5"><div id="sb-auto-prog" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#A5B4FC,#6366F1);transition:width 0.8s ease;"></div></div>
+                    <div id="sb-auto-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Document received</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Classified: Patient Referral</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Extracted: Sarah Chen, DOB, Dr. Patel</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Urgency: Standard</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Routed to Intake Queue</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-auto-card" class="hidden mt-4 rounded-xl border-2 bg-base p-4" style="border-color:rgba(99,102,241,0.2);">
+                      <p class="text-[10px] font-mono mb-3" style="color:#6366F1;">Extracted Data</p>
+                      <div class="rounded-lg border border-border bg-white p-3 text-xs space-y-1.5">
+                        <div class="flex justify-between"><span class="text-text-muted">Patient</span><span class="text-text-primary font-medium">Sarah Chen</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">DOB</span><span class="text-text-primary">03/15/1985</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Referring</span><span class="text-text-primary">Dr. Rajesh Patel, St. James Hospital</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Diagnosis</span><span class="text-text-primary">Suspected meniscal tear, right knee</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Insurance</span><span class="text-text-primary">Blue Shield PPO , BSP-449821</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Routed to</span><span class="font-medium" style="color:#6366F1;">Intake Queue</span></div>
+                      </div>
+                      <p class="text-[10px] text-text-muted mt-3 text-center">This workflow runs automatically for every incoming fax. No manual review needed.</p>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── ENGAGE SANDBOX ── -->
+              <div id="sb-engage" class="hidden glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#9432FD;">Compose Message</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono" style="background:rgba(59,130,246,0.06);color:#9432FD;">Preview Mode</span></div>
+                <div class="space-y-4">
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Channel</label><div class="flex gap-2"><span class="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style="background:#9432FD;">Secure Chat</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer hover:border-purple-core/30">SMS</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer hover:border-purple-core/30">Email</span></div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Recipient</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Dr. Rajesh Patel , Cardiology</option><option>Nurse Sarah Chen , Internal Medicine</option><option>Patient: Jane Smith</option><option disabled>Custom (unlock after trial)</option></select></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Regarding Patient</label><div class="px-3 py-2.5 rounded-lg border border-border bg-base text-sm text-text-secondary">Sarah Chen , MRN SC-2026-0451</div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Message</label><textarea rows="3" class="form-input w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary resize-none">Hi Dr. Patel, sending over the lab results for patient Chen. Please review and confirm the referral at your earliest convenience.</textarea></div>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">Attach</label><select class="custom-select w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary cursor-pointer"><option selected>Lab Results (1 file)</option><option>Referral Document</option><option>None</option></select></div>
+                    <div><label class="block text-xs font-medium text-text-primary mb-1.5">Priority</label><div class="flex gap-2 mt-0.5"><span class="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style="background:#9432FD;">Normal</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer">Urgent</span></div></div>
+                  </div>
+                  <div class="flex items-center gap-2 px-3 py-2 rounded-lg" style="background:rgba(59,130,246,0.04);border:1px solid rgba(59,130,246,0.1);"><svg class="w-3.5 h-3.5 flex-shrink-0" style="color:#9432FD;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg><span class="text-[10px] text-text-secondary">End-to-end encrypted &bull; HIPAA compliant &bull; Read receipts enabled</span></div>
+                </div>
+                <button onclick="sbSend('engage')" id="sb-engage-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(59,130,246,0.4);">Send Message</button>
+                <!-- Result area -->
+                <div id="sb-engage-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-engage-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-engage-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#9432FD;">Conversation</span><span class="text-[10px] font-mono text-text-muted" id="sb-eng-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-4"><div id="sb-eng-prog" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#C693FE,#9432FD);transition:width 0.8s ease;"></div></div>
+                    <div id="sb-eng-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Message sent</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Delivered to Dr. Patel</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Read by Dr. Patel</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Dr. Patel replied</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-eng-card" class="hidden mt-4 rounded-xl border-2 p-4" style="border-color:rgba(59,130,246,0.2);background:rgba(59,130,246,0.02);">
+                      <div class="space-y-3 mb-3">
+                        <div class="flex gap-2"><div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[8px] font-bold" style="background:#9432FD;">You</div><div class="rounded-xl rounded-tl-none px-3 py-2 text-xs text-text-primary max-w-[80%]" style="background:rgba(59,130,246,0.06);">Hi Dr. Patel, sending over the lab results for patient Chen. Please review and confirm the referral.<br><span class="text-[10px] text-text-muted mt-1 inline-block">&#128206; lab_results_chen.pdf</span></div></div>
+                        <div class="flex items-center gap-1 ml-8"><svg class="w-3 h-3" style="color:#9432FD;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><svg class="w-3 h-3" style="color:#9432FD;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-[10px] text-text-muted">Read at 10:04 AM</span></div>
+                        <div class="flex gap-2 justify-end"><div class="rounded-xl rounded-tr-none px-3 py-2 text-xs text-white max-w-[80%]" style="background:#9432FD;">Received, thanks. I'll review and sign off by EOD. Attaching the consent form now.<br><span class="text-[10px] text-purple-100 mt-1 inline-block">&#128206; consent_form_chen.pdf</span></div><div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[8px] font-bold" style="background:#6366F1;">RP</div></div>
+                      </div>
+                      <div class="flex items-center gap-2 px-3 py-2 rounded-lg text-[10px] font-mono" style="background:rgba(59,130,246,0.05);color:#9432FD;"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>Encrypted &bull; HIPAA audit logged &bull; Patient: Sarah Chen</div>
+                      <p class="text-xs text-text-secondary mt-3">Dr. Patel mentioned a consent form. < href="#" class="font-medium" style="color:#7C3AED;" onclick="event.preventDefault();selectMod('signature')">Send for E-Signature &rarr;</a></p>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(59,130,246,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── COLLECT SANDBOX ── -->
+              <div id="sb-collect" class="hidden glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#14B8A6;">Choose Template</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono" style="background:rgba(20,184,166,0.06);color:#14B8A6;">Preview Mode</span></div>
+                <div class="space-y-3">
+                  <label class="block rounded-xl border-2 p-4 cursor-pointer" style="border-color:rgba(20,184,166,0.3);background:rgba(20,184,166,0.04);"><input type="radio" name="cf" checked class="mr-2" style="accent-color:#14B8A6;" /><span class="text-sm font-medium text-text-primary">New Patient Intake</span><p class="text-xs text-text-secondary mt-1 ml-6">Demographics, insurance, medical history, consent</p></label>
+                  <label class="block rounded-xl border border-border bg-white p-4 cursor-pointer hover:border-teal-200 transition-colors"><input type="radio" name="cf" class="mr-2" style="accent-color:#14B8A6;" /><span class="text-sm font-medium text-text-primary">Specialist Referral Form</span><p class="text-xs text-text-secondary mt-1 ml-6">Referring provider info, clinical notes, insurance</p></label>
+                  <label class="block rounded-xl border border-border bg-white p-4 cursor-pointer hover:border-teal-200 transition-colors"><input type="radio" name="cf" class="mr-2" style="accent-color:#14B8A6;" /><span class="text-sm font-medium text-text-primary">HIPAA Authorization</span><p class="text-xs text-text-secondary mt-1 ml-6">Release of information with signature</p></label>
+                </div>
+                <div class="mt-4 rounded-xl border border-border bg-base p-4"><p class="text-[10px] font-mono text-text-muted mb-2">Form Preview</p><div class="space-y-2"><div class="flex items-center gap-2"><div class="w-3 h-3 rounded border" style="border-color:#14B8A6;background:rgba(20,184,166,0.1);"></div><span class="text-[11px] text-text-primary">Personal Info</span></div><div class="flex items-center gap-2"><div class="w-3 h-3 rounded border" style="border-color:#14B8A6;background:rgba(20,184,166,0.1);"></div><span class="text-[11px] text-text-primary">Insurance</span></div><div class="flex items-center gap-2"><div class="w-3 h-3 rounded border" style="border-color:#14B8A6;background:rgba(20,184,166,0.1);"></div><span class="text-[11px] text-text-primary">Medical History</span></div><div class="flex items-center gap-2"><div class="w-3 h-3 rounded border border-border"></div><span class="text-[11px] text-text-muted">Consent &amp; Signature</span></div></div></div>
+                <button onclick="sbSend('collect')" id="sb-collect-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Send Form</button>
+                <!-- Result area -->
+                <div id="sb-collect-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-collect-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-collect-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#14B8A6;">Form Completion</span><span class="text-[10px] font-mono text-text-muted" id="sb-col-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-4"><div id="sb-col-prog" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#5EEAD4,#14B8A6);transition:width 0.8s ease;"></div></div>
+                    <div id="sb-col-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Form sent via SMS</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Patient opened form</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Personal info completed</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Insurance verified: Blue Shield PPO &#10003;</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Consent signed</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-col-card" class="hidden mt-4 rounded-xl border-2 p-4" style="border-color:rgba(20,184,166,0.2);background:rgba(20,184,166,0.02);">
+                      <p class="text-[10px] font-mono mb-3" style="color:#14B8A6;">Completed Form</p>
+                      <div class="rounded-lg border border-border bg-white p-3 text-xs space-y-1.5">
+                        <div class="flex justify-between"><span class="text-text-muted">Patient</span><span class="text-text-primary font-medium">Jane Smith</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">DOB</span><span class="text-text-primary">06/22/1988</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Insurance</span><span class="font-medium" style="color:#14B8A6;">Blue Shield PPO, Verified &#10003;, Copay: $25</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Allergies</span><span class="text-text-primary">Penicillin (rash)</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Medications</span><span class="text-text-primary">Lisinopril 10mg daily</span></div>
+                        <div class="flex justify-between"><span class="text-text-muted">Consent</span><span class="font-medium" style="color:#14B8A6;">Signed &#10003; at 10:07 AM</span></div>
+                      </div>
+                      <p class="text-[10px] text-text-muted mt-3 text-center">This data auto-populates into your EHR. No manual entry needed.</p>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ── API SANDBOX ── -->
+              <div id="sb-api" class="hidden glass-card rounded-2xl border border-border card-shadow-lg p-7">
+                <div class="flex items-center justify-between mb-5"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#64748B;">Your Credentials</span><span class="px-2.5 py-1 rounded-full text-[10px] font-mono" style="background:rgba(100,116,139,0.06);color:#64748B;">Preview Mode</span></div>
+                <div class="space-y-4">
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Sandbox API Key</label><div class="flex items-center gap-2 px-3 py-2.5 rounded-lg border border-border bg-base font-mono text-xs text-text-secondary"><span class="flex-1 truncate">amp_sk_sandbox_4f8a9c2b1d7e3f6a...</span><button class="text-purple-core hover:opacity-80 text-xs font-medium font-body flex-shrink-0">Copy</button></div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Base URL</label><div class="px-3 py-2.5 rounded-lg border border-border bg-base font-mono text-xs text-text-secondary">https://api.sandbox.amplify.xyz/v1</div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Language</label><div class="flex gap-1.5"><span class="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style="background:#64748B;">cURL</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer hover:border-gray-400">Python</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer hover:border-gray-400">Node.js</span><span class="px-3 py-1.5 rounded-lg text-xs text-text-muted border border-border cursor-pointer hover:border-gray-400">Java</span></div></div>
+                  <div><label class="block text-xs font-medium text-text-primary mb-1.5">Action</label><div class="space-y-1.5"><label class="flex items-center gap-2 px-3 py-2 rounded-lg border-2 cursor-pointer" style="border-color:rgba(100,116,139,0.3);background:rgba(100,116,139,0.03);"><input type="radio" name="api-action" checked style="accent-color:#64748B;" /><span class="text-xs text-text-primary">Send a Fax</span></label><label class="flex items-center gap-2 px-3 py-2 rounded-lg border border-border cursor-pointer hover:border-gray-300"><input type="radio" name="api-action" style="accent-color:#64748B;" /><span class="text-xs text-text-primary">Check Fax Status</span></label><label class="flex items-center gap-2 px-3 py-2 rounded-lg border border-border cursor-pointer hover:border-gray-300"><input type="radio" name="api-action" style="accent-color:#64748B;" /><span class="text-xs text-text-primary">Extract Document Data</span></label></div></div>
+                </div>
+                <button onclick="sbSend('api')" id="sb-api-cta" class="btn-shimmer w-full mt-5 px-6 py-3.5 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Run API Call</button>
+                <!-- Result area -->
+                <div id="sb-api-result-area" class="mt-5 rounded-xl border border-border bg-base/50 p-4">
+                  <div id="sb-api-skeleton" class="space-y-2">
+                    <div class="h-3 bg-floating rounded w-3/4"></div>
+                    <div class="h-3 bg-floating rounded w-1/2"></div>
+                    <div class="h-3 bg-floating rounded w-2/3"></div>
+                    <div class="h-3 bg-floating rounded w-1/3"></div>
+                  </div>
+                  <div id="sb-api-live" class="hidden">
+                    <div class="flex items-center justify-between mb-4"><span class="text-[10px] font-mono uppercase tracking-widest font-semibold" style="color:#64748B;">Response</span><span class="text-[10px] font-mono text-text-muted" id="sb-api-timer">0.0s</span></div>
+                    <div class="w-full h-1.5 rounded-full bg-floating overflow-hidden mb-4"><div id="sb-api-prog" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,#94A3B8,#64748B);transition:width 0.8s ease;"></div></div>
+                    <div id="sb-api-steps" class="space-y-0">
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Request sent</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Authenticated</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">Fax queued &amp; delivered</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                      <div class="sb-step flex items-center gap-3 py-2 opacity-30"><div class="w-6 h-6 rounded-full bg-floating flex items-center justify-center"><svg class="w-3 h-3 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></div><span class="text-xs text-text-secondary">200 OK: Response ready</span><span class="text-[10px] text-text-muted ml-auto">-</span></div>
+                    </div>
+                    <div id="sb-api-card" class="hidden mt-4">
+                      <div class="rounded-xl border border-border bg-[#1E293B] p-4 font-mono text-xs leading-relaxed mb-3"><span style="color:#4ADE80;">200 OK</span> <span style="color:#94A3B8;">// Response</span><br><span style="color:#CBD5E1;">{</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;"status": </span><span style="color:#4ADE80;">"success"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;"data": {</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;&nbsp;&nbsp;"fax_id": </span><span style="color:#A78BFA;">"fax_9x8k2m"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;&nbsp;&nbsp;"to": </span><span style="color:#A78BFA;">"+15550001234"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;&nbsp;&nbsp;"pages": </span><span style="color:#38BDF8;">3</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;&nbsp;&nbsp;"status": </span><span style="color:#4ADE80;">"delivered"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;&nbsp;&nbsp;"delivery_time_ms": </span><span style="color:#38BDF8;">1823</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;}</span><br><span style="color:#CBD5E1;">}</span></div>
+                      <div class="rounded-xl border border-border bg-[#1E293B] p-4 font-mono text-xs leading-relaxed"><span style="color:#94A3B8;">// Webhook event your callback_url receives:</span><br><span style="color:#CBD5E1;">{</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;"event": </span><span style="color:#A78BFA;">"fax.delivered"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;"fax_id": </span><span style="color:#A78BFA;">"fax_9x8k2m"</span><span style="color:#CBD5E1;">,</span><br><span style="color:#CBD5E1;">&nbsp;&nbsp;"timestamp": </span><span style="color:#A78BFA;">"2026-03-24T10:03:02Z"</span><br><span style="color:#CBD5E1;">}</span></div>
+                      <button onclick="showWorkEmail()" class="btn-shimmer w-full mt-4 px-6 py-3 rounded-xl text-white text-sm font-semibold active:scale-[0.97]" style="background:#9432FD;box-shadow:0 4px 16px rgba(148,50,253,0.4);">Explore Your Dashboard &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right: demo video -->
+            <div>
+              <div class="video-player h-full" id="video-box" style="min-height:100%;">
+                <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-core/20 to-purple-core/5">
+                  <div class="text-center"><p class="text-white/50 text-xs font-mono mb-2" id="video-label">How to send a fax in Amplify</p><img src="https://cdn.prod.website-files.com/698239b291275032e3e718d0/699304f4c97657e72c942df6_c243f7912c98c6ee15d4b18190b7f6f4_amplify-dark-logo.svg" alt="" class="h-5 mx-auto opacity-30" /><span class="absolute bottom-16 right-4 px-2 py-0.5 rounded text-[9px] font-mono text-white/40 bg-white/10">60 sec</span></div>
+                </div>
+                <div class="play-btn"><svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="video-progress"><div class="video-progress-fill"></div></div>
+              </div>
+              <p class="text-xs text-text-muted mt-3 text-right">Watch the 60-second walkthrough</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Work Email Transition -->
+        <div id="sandbox-workemail" class="hidden">
+          <div class="glass-card rounded-2xl border border-border card-shadow-lg p-10 max-w-[540px] mx-auto text-center">
+            <div class="w-14 h-14 rounded-2xl bg-purple-subtle flex items-center justify-center mx-auto mb-5"><svg class="w-7 h-7 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+            <h2 id="we-heading" class="font-display text-2xl font-semibold text-text-primary" style="letter-spacing:-0.03em;">That was the preview. Ready for the real thing?</h2>
+            <p id="we-subtitle" class="text-sm text-text-secondary mt-2">Connect your work email to use Amplify with real documents, real fax numbers, and your team.</p>
+            <div class="mt-6 text-left space-y-3" id="we-email-section">
+              <div><label class="block text-xs font-medium text-text-primary mb-1.5">Work email</label><input type="email" id="we-email-input" placeholder="you@yourorganization.com" class="form-input w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-text-primary placeholder:text-text-muted" /></div>
+              <label class="flex items-center gap-2 cursor-pointer group" onclick="useSameEmail()"><input type="checkbox" id="we-same-email-cb" class="w-4 h-4 rounded border-border text-purple-core" style="accent-color:#9432FD;" /><span class="text-xs text-text-secondary group-hover:text-text-primary transition-colors">This is also my work email</span></label>
+              <div id="we-org-row"><label class="block text-xs font-medium text-text-primary mb-1.5">Organization</label><div id="we-org-display" class="px-4 py-3 rounded-xl border border-border bg-base text-sm text-text-muted italic">Auto-detected from email domain</div></div>
+            </div>
+            <div class="mt-5 text-left">
+              <p class="text-xs font-medium text-text-primary mb-2">With a work email you get:</p>
+              <div class="grid grid-cols-2 gap-2"><span class="flex items-center gap-1.5 text-xs text-text-secondary"><svg class="w-3.5 h-3.5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Real fax numbers</span><span class="flex items-center gap-1.5 text-xs text-text-secondary"><svg class="w-3.5 h-3.5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Team invitations</span><span class="flex items-center gap-1.5 text-xs text-text-secondary"><svg class="w-3.5 h-3.5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>EHR integration</span><span class="flex items-center gap-1.5 text-xs text-text-secondary"><svg class="w-3.5 h-3.5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>14-day full trial</span></div>
+            </div>
+            <button onclick="goToScreen(5)" class="btn-shimmer w-full mt-6 px-6 py-3.5 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Continue with Work Email</button>
+            <div class="flex items-center justify-center gap-2 mt-4"><svg class="w-3.5 h-3.5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span class="text-[11px] text-text-muted">5,000+ healthcare teams already on Amplify</span></div>
+            <button onclick="goToScreen(5)" class="w-full mt-2 text-sm text-text-muted hover:text-text-secondary transition-colors py-2">Continue exploring without work email</button>
+          </div>
+        </div>
+
+        <div class="strategy-tip mt-10 max-w-[700px] mx-auto"><div class="tip-content"><div class="tip-label">PLG Strategy: Sandbox</div><p><strong>Single-screen sandbox</strong> keeps the form visible while the result animates in-place below. No panel swapping, no jarring size changes. Users configure real inputs (recipient, document, label) creating <strong>psychological ownership</strong> that increases conversion. The <strong>1.8s timer</strong> reinforces speed. <strong>Work email gate</strong> appears post-activation because conversion is 3x higher after the user has experienced value. <strong>AI insight teasers</strong> create cross-sell desire between modules. <strong>Demo video</strong> reduces cognitive load for first-time users.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 5: EXPLORE ===== -->
+    <div id="screen-5" class="screen-panel flex-1 flex-col items-center px-4 py-10">
+      <div class="w-full max-w-[880px] mx-auto">
+        <div class="glass-card rounded-2xl border border-border card-shadow p-5 flex items-center justify-between mb-8" style="background:linear-gradient(90deg,rgba(148,50,253,0.04),rgba(255,255,255,0.78));">
+          <div class="flex items-center gap-5"><div class="w-12 h-12 rounded-xl bg-purple-subtle flex items-center justify-center"><svg class="w-6 h-6 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div><p class="text-base font-semibold text-text-primary">14 days of full access</p><p class="text-sm text-text-secondary">Every module. Every feature. No limits.</p></div></div>
+          <div class="w-36"><div class="w-full h-2 rounded-full bg-floating overflow-hidden"><div class="h-full rounded-full progress-fill" style="width:1%"></div></div></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <div class="flex"><div class="glass-card rounded-2xl border border-border card-shadow p-8 flex-1">
+            <div class="flex items-center justify-between mb-6"><h2 class="font-display text-xl font-semibold text-text-primary" style="letter-spacing:-0.02em;">Your next steps</h2><span class="text-[10px] font-mono text-purple-core uppercase tracking-widest font-semibold">Based on your workflow</span></div>
+            <div class="space-y-3" id="nsl">
+              <div class="checklist-item flex items-start gap-5 p-5 rounded-xl border border-border bg-white cursor-pointer group"><div class="w-10 h-10 rounded-xl bg-purple-core flex items-center justify-center flex-shrink-0 pulse-ring"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg></div><div class="flex-1"><h3 id="ns1t" class="text-base font-semibold text-text-primary group-hover:text-purple-core transition-colors duration-200">Set up number porting</h3><p id="ns1d" class="text-sm text-text-secondary mt-1">Transfer your existing fax number to Amplify</p></div><svg class="w-5 h-5 text-text-muted group-hover:text-purple-core transition-colors duration-200 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div>
+              <div class="checklist-item flex items-start gap-5 p-5 rounded-xl border border-border bg-white cursor-pointer group"><div class="w-10 h-10 rounded-xl bg-purple-subtle flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div><div class="flex-1"><h3 id="ns2t" class="text-base font-semibold text-text-primary group-hover:text-purple-core transition-colors duration-200">Configure document workflows</h3><p id="ns2d" class="text-sm text-text-secondary mt-1">Set up routing, classification, and triggers</p></div><svg class="w-5 h-5 text-text-muted group-hover:text-purple-core transition-colors duration-200 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div>
+              <div class="checklist-item flex items-start gap-5 p-5 rounded-xl border border-border bg-white cursor-pointer group"><div class="w-10 h-10 rounded-xl bg-purple-subtle flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg></div><div class="flex-1"><h3 id="ns3t" class="text-base font-semibold text-text-primary group-hover:text-purple-core transition-colors duration-200">Invite your team</h3><p id="ns3d" class="text-sm text-text-secondary mt-1">Teams that collaborate retain 2.5x better</p></div><svg class="w-5 h-5 text-text-muted group-hover:text-purple-core transition-colors duration-200 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div>
+              <div id="ns4-wrap" class="checklist-item flex items-start gap-5 p-5 rounded-xl border border-border bg-white cursor-pointer group" onclick="goToScreen(3);setTimeout(()=>switchPreview(S._ns4mod||'signature'),100)"><div class="w-10 h-10 rounded-xl bg-purple-subtle flex items-center justify-center flex-shrink-0"><svg class="w-5 h-5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div><div class="flex-1"><h3 id="ns4t" class="text-base font-semibold text-text-primary group-hover:text-purple-core transition-colors duration-200">Explore another module</h3><p id="ns4d" class="text-sm text-text-secondary mt-1">Try E-Signature, Automate, or Engage next</p></div><svg class="w-5 h-5 text-text-muted group-hover:text-purple-core transition-colors duration-200 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></div>
+            </div>
+          </div></div>
+          <div class="space-y-5">
+            <div class="glass-card rounded-2xl border border-border card-shadow p-6"><h3 class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">Platform</h3><div class="space-y-1" id="plat-list"></div></div>
+            <!-- Work email CTA (shown for sandbox path users) -->
+            <div id="explore-workemail-cta" class="hidden glass-card rounded-2xl border-2 border-purple-core/20 card-shadow-glow p-6">
+              <div class="flex items-center gap-2 mb-3"><svg class="w-5 h-5 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg><h3 class="text-sm font-semibold text-text-primary">Ready to go live?</h3></div>
+              <p class="text-xs text-text-secondary leading-relaxed mb-4">Connect your work email to start using Amplify with your team. Everything you tried in the sandbox works with real data.</p>
+              <div class="space-y-2 mb-4">
+                <input type="email" placeholder="you@yourorganization.com" class="form-input w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm text-text-primary placeholder:text-text-muted" />
+                <div class="px-3 py-2 rounded-lg border border-border bg-base text-xs text-text-muted italic">Organization: auto-detected</div>
+              </div>
+              <button onclick="goToScreen(5)" class="btn-shimmer w-full px-4 py-3 rounded-xl bg-purple-core text-white text-sm font-semibold active:scale-[0.97]" style="box-shadow:0 4px 16px rgba(148,50,253,0.4);">Set up with work email &rarr;</button>
+              <div class="grid grid-cols-2 gap-1.5 mt-4"><span class="flex items-center gap-1 text-[10px] text-text-secondary"><svg class="w-3 h-3 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Real fax numbers</span><span class="flex items-center gap-1 text-[10px] text-text-secondary"><svg class="w-3 h-3 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Team invitations</span><span class="flex items-center gap-1 text-[10px] text-text-secondary"><svg class="w-3 h-3 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>EHR integration</span><span class="flex items-center gap-1 text-[10px] text-text-secondary"><svg class="w-3 h-3 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>14-day full trial</span></div>
+            </div>
+            <!-- Quick Actions (shown for direct/work-email path users) -->
+            <div id="explore-quick-actions" class="hidden glass-card rounded-2xl border border-border card-shadow p-6"><h3 class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">Quick Actions</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-base transition-colors duration-200 group"><div class="w-12 h-12 rounded-xl bg-purple-subtle flex items-center justify-center group-hover:bg-purple-core/10"><svg class="w-6 h-6 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg></div><span class="text-xs text-text-secondary font-medium">Send Fax</span></button>
+                <button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-base transition-colors duration-200 group"><div class="w-12 h-12 rounded-xl bg-purple-subtle flex items-center justify-center group-hover:bg-purple-core/10"><svg class="w-6 h-6 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg></div><span class="text-xs text-text-secondary font-medium">Upload</span></button>
+                <button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-base transition-colors duration-200 group"><div class="w-12 h-12 rounded-xl bg-purple-subtle flex items-center justify-center group-hover:bg-purple-core/10"><svg class="w-6 h-6 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div><span class="text-xs text-text-secondary font-medium">Templates</span></button>
+                <button class="flex flex-col items-center gap-2 p-4 rounded-xl hover:bg-base transition-colors duration-200 group"><div class="w-12 h-12 rounded-xl bg-purple-subtle flex items-center justify-center group-hover:bg-purple-core/10"><svg class="w-6 h-6 text-purple-core" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><span class="text-xs text-text-secondary font-medium">Settings</span></button>
+              </div>
+            </div>
+            <!-- Attribution (moved from segmentation to reduce friction) -->
+            <div id="s5-attribution" class="glass-card rounded-2xl border border-border card-shadow p-5">
+              <p class="text-xs font-medium text-text-primary mb-2">One last thing — how'd you find us?</p>
+              <div class="flex flex-wrap gap-1.5">
+                <button onclick="segPill('attr','search',this);this.parentElement.parentElement.style.opacity='0.5'" class="seg-pill px-3 py-1.5 rounded-full text-[11px] font-medium border border-border bg-white hover:border-purple-core/30 transition-colors cursor-pointer">Search</button>
+                <button onclick="segPill('attr','g2',this);this.parentElement.parentElement.style.opacity='0.5'" class="seg-pill px-3 py-1.5 rounded-full text-[11px] font-medium border border-border bg-white hover:border-purple-core/30 transition-colors cursor-pointer">G2</button>
+                <button onclick="segPill('attr','colleague',this);this.parentElement.parentElement.style.opacity='0.5'" class="seg-pill px-3 py-1.5 rounded-full text-[11px] font-medium border border-border bg-white hover:border-purple-core/30 transition-colors cursor-pointer">Colleague</button>
+                <button onclick="segPill('attr','event',this);this.parentElement.parentElement.style.opacity='0.5'" class="seg-pill px-3 py-1.5 rounded-full text-[11px] font-medium border border-border bg-white hover:border-purple-core/30 transition-colors cursor-pointer">Event</button>
+                <button onclick="segPill('attr','social',this);this.parentElement.parentElement.style.opacity='0.5'" class="seg-pill px-3 py-1.5 rounded-full text-[11px] font-medium border border-border bg-white hover:border-purple-core/30 transition-colors cursor-pointer">Social</button>
+              </div>
+            </div>
+            <!-- Social proof: Teams like yours -->
+            <div class="glass-card rounded-2xl border border-border card-shadow p-5 mt-5">
+              <h3 class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-3">Teams like yours</h3>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-purple-subtle flex items-center justify-center text-[10px] font-bold text-purple-core">MG</div><div><p class="text-xs font-medium text-text-primary">Mercy General</p><p class="text-[10px] text-text-muted">Activated Fax + Automate this week</p></div></div>
+                <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-purple-subtle flex items-center justify-center text-[10px] font-bold text-purple-core">PH</div><div><p class="text-xs font-medium text-text-primary">Pacific Health Partners</p><p class="text-[10px] text-text-muted">Ported 12 fax numbers yesterday</p></div></div>
+                <div class="flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-purple-subtle flex items-center justify-center text-[10px] font-bold text-purple-core">SC</div><div><p class="text-xs font-medium text-text-primary">Summit Care Network</p><p class="text-[10px] text-text-muted">Sent 340 faxes in their first week</p></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="strategy-tip mt-8"><div class="tip-content"><div class="tip-label">PLG Strategy: Explore &amp; Expand</div><p><strong>Recommended next steps</strong> create the second activation loop. Steps are <strong>segment-personalized</strong> based on the module the user activated in the sandbox. <strong>Work email transition</strong> (previous screen) captures organizational identity for PQL scoring and team-based expansion. Users who provided a work email see team invitation as a next step; those who skipped see it gated. <strong>Platform sidebar</strong> shows product depth , unexplored modules create FOMO driving cross-sell. <strong>Trial countdown</strong> creates urgency without a hard paywall.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let S={screen:1,mod:'fax',seg:{},triedMods:new Set()},ann=false;
+    const roles={healthcare:[{v:'ops',l:'Operations or Administration'},{v:'clinical',l:'Clinical'},{v:'legal',l:'Legal or Compliance'},{v:'it',l:'Information Technology'},{v:'finance',l:'Finance'}],legal:[{v:'paralegal',l:'Paralegal / Legal Ops'},{v:'attorney',l:'Attorney'},{v:'admin',l:'Administration'},{v:'it',l:'IT'}],government:[{v:'admin',l:'Administration'},{v:'records',l:'Records'},{v:'it',l:'IT'},{v:'compliance',l:'Compliance'}],other:[{v:'ops',l:'Operations'},{v:'it',l:'IT'},{v:'admin',l:'Admin'},{v:'exec',l:'Executive'}]};
+    const MC={fax:{title:'Send a fax in seconds',sub:"See how fast document delivery can be. This is your sandbox, nothing real is sent.",sb:'sb-fax',vl:'Send a fax in under 2 seconds',deep:true},signature:{title:'Collect a signature in seconds',sub:"See how fast you can get documents signed. Sandbox mode, no real emails sent.",sb:'sb-signature',vl:'Collect signatures in minutes',deep:true},automate:{title:'Watch AI process a document',sub:'See how Amplify reads, classifies, and routes documents automatically.',sb:'sb-automate',vl:'AI processes documents in seconds',deep:true},api:{title:'Make your first API call',sub:'Test the Amplify API with real responses. Sandbox mode, no production data affected.',sb:'sb-api',vl:'Your first API call in 60 seconds',deep:true},engage:{title:'Send a secure message',sub:'See how secure messaging replaces phone tag. Sandbox mode, no real messages sent.',sb:'sb-engage',vl:'Replace phone tag with secure messaging',deep:true},collect:{title:'Build a patient intake form',sub:'See how patients complete forms on their phones before they arrive.',sb:'sb-collect',vl:'Patient intake, before they arrive',deep:true}};
+    const NS={fax:[{t:'Set up number porting',d:'Transfer your existing fax number to Amplify'},{t:'Configure document workflows',d:'Set up routing, classification, and triggers'},{t:'Invite your team',d:'Teams that collaborate retain 2.5x better'}],signature:[{t:'Create a signing template',d:'Build reusable templates for common documents'},{t:'Set up signing workflows',d:'Automate multi-party signing with reminders'},{t:'Invite your team',d:'Enable your team to send signature requests'}],automate:[{t:'Connect your fax inbox',d:'Auto-process every incoming fax with AI'},{t:'Create custom extraction rules',d:'Define the fields AI should pull from your documents'},{t:'Set up routing rules',d:'Route documents to the right team automatically'}],engage:[{t:'Add your team contacts',d:'Import providers, nurses, and staff into secure messaging'},{t:'Set up patient messaging',d:'Enable two-way SMS with patients'},{t:'Configure escalation rules',d:'Auto-escalate unanswered messages after 15 minutes'}],collect:[{t:'Customize your intake form',d:'Add your practice logo, fields, and consent language'},{t:'Connect insurance verification',d:'Auto-verify patient coverage in real-time'},{t:'Set up appointment reminders',d:'Send SMS reminders with form links before visits'}],api:[{t:'Set up webhooks',d:'Get real-time notifications on fax delivery events'},{t:'Configure audit logs',d:'HIPAA-compliant logging for every API call'},{t:'Explore batch API',d:'High-volume fax processing endpoint'}],default:[{t:'Explore templates',d:'Browse pre-built templates for your industry'},{t:'Set up team workspace',d:'Organize and invite collaborators'},{t:'Connect integrations',d:'Link Amplify to your existing tools'}]};
+
+    function goToScreen(n){
+      S.screen=n;
+      document.querySelectorAll('.screen-panel').forEach(p=>p.classList.remove('active'));
+      const el=document.getElementById('screen-'+n);
+      if(el){void el.offsetWidth;el.classList.add('active');}
+      document.querySelectorAll('.step-btn').forEach(b=>{b.classList.remove('step-btn-active');b.classList.add('text-text-secondary');});
+      const ab=document.querySelector(`[data-step-btn="${n}"]`);
+      if(ab){ab.classList.add('step-btn-active');ab.classList.remove('text-text-secondary');}
+      if(n===3){if(Object.keys(S.seg).length>0)setTimeout(autoRecommend,200);else setTimeout(defaultRecommend,200);}
+      if(n===4)setupS4();if(n===5)setupS5();
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(typeof saveState==='function') saveState();
+    }
+
+    const segRevealOrder=['industry','role','size','title'];
+    function segPill(field,value,btn){
+      S.seg[field]=value;
+      // Highlight selected pill in this group — handle both old-style (class-swap) and new enhanced pills
+      const parent=btn.parentElement;
+      parent.querySelectorAll('.seg-pill').forEach(p=>{
+        p.classList.remove('selected','bg-purple-core','text-white','border-purple-core');
+        p.setAttribute('aria-pressed','false');
+        if(!p.classList.contains('seg-pill-e')){p.classList.add('bg-white','text-text-primary','border-border');}
+      });
+      if(btn.classList.contains('seg-pill-e')){btn.classList.add('selected');}
+      else{btn.classList.remove('bg-white','text-text-primary','border-border');btn.classList.add('bg-purple-core','text-white','border-purple-core');}
+      btn.setAttribute('aria-pressed','true');
+      // Fill progress segment (both inline and fixed)
+      const progSeg=document.querySelector(`[data-seg-prog="${field}"]`);
+      if(progSeg) progSeg.classList.add('done');
+      const fixedSeg=document.querySelector(`[data-seg-prog-fixed="${field}"]`);
+      if(fixedSeg) fixedSeg.classList.add('done');
+      // Update progress bar aria-valuenow
+      const answered=segRevealOrder.filter(f=>S.seg[f]).length;
+      const progBar=document.getElementById('seg-inline-progress');
+      if(progBar) progBar.setAttribute('aria-valuenow',String(answered));
+      // If industry selected, generate role pills
+      if(field==='industry'){
+        const container=document.getElementById('seg-role-pills');
+        const opts=roles[value]||roles.other;
+        container.innerHTML='';
+        opts.forEach(o=>{
+          const b=document.createElement('button');
+          b.className='seg-pill seg-pill-e';
+          b.textContent=o.l;
+          b.onclick=function(){segPill('role',o.v,b);};
+          container.appendChild(b);
+        });
+      }
+      // Cascading reveal: show next question block after short delay
+      const idx=segRevealOrder.indexOf(field);
+      if(idx>=0 && idx<segRevealOrder.length-1){
+        const nextField=segRevealOrder[idx+1];
+        const nextBlock=document.querySelector(`[data-seg-block="${nextField}"]`)||document.getElementById(`seg-block-${nextField}`);
+        if(nextBlock && !nextBlock.classList.contains('revealed')){
+          setTimeout(()=>{
+            nextBlock.classList.add('revealed');
+            setTimeout(()=>nextBlock.scrollIntoView({behavior:'smooth',block:'center'}),100);
+          },250);
+        }
+      }
+      // Show Continue button after 4+ fields answered
+      // Update progress label
+      const progLabel=document.getElementById('seg-progress-label');
+      if(progLabel){const labels=['','1 of 4','2 of 4 — halfway there','3 of 4 — almost done','Your personalized setup is ready'];progLabel.textContent=labels[Math.min(answered,4)]||'';}
+      if(answered>=3){
+        const cWrap=document.getElementById('seg-continue-wrap');
+        if(cWrap && !cWrap.classList.contains('revealed')){
+          setTimeout(()=>{
+            cWrap.classList.add('revealed');
+            setTimeout(()=>cWrap.scrollIntoView({behavior:'smooth',block:'center'}),100);
+          },300);
+        }
+      }
+      if(typeof saveState==='function') saveState();
+    }
+
+    // Fixed progress bar: show when inline bar scrolls out of view, sync fill state
+    (function(){
+      function syncFixedProgress(){
+        segRevealOrder.forEach(f=>{
+          const fixed=document.querySelector(`[data-seg-prog-fixed="${f}"]`);
+          const inline=document.querySelector(`[data-seg-prog="${f}"]`);
+          if(fixed&&inline&&inline.classList.contains('done')) fixed.classList.add('done');
+        });
+      }
+      const inlineBar=document.getElementById('seg-inline-progress');
+      const fixedBar=document.getElementById('seg-fixed-progress');
+      if(inlineBar&&fixedBar){
+        window.addEventListener('scroll',()=>{
+          const screen2=document.getElementById('screen-2');
+          const isScreen2Active=screen2&&screen2.classList.contains('active');
+          if(!isScreen2Active){fixedBar.style.opacity='0';fixedBar.style.pointerEvents='none';return;}
+          const rect=inlineBar.getBoundingClientRect();
+          if(rect.bottom<0){
+            syncFixedProgress();
+            fixedBar.style.opacity='1';
+            fixedBar.style.pointerEvents='auto';
+          }else{
+            fixedBar.style.opacity='0';
+            fixedBar.style.pointerEvents='none';
+          }
+        },{passive:true});
+      }
+    })();
+
+    function showAttrOther(btn){
+      btn.classList.add('hidden');
+      const input=document.getElementById('seg-attr-other-input');
+      input.classList.remove('hidden');
+      input.focus();
+    }
+
+    function useSameEmail(){
+      const cb=document.getElementById('we-same-email-cb');
+      const emailInput=document.getElementById('we-email-input');
+      const orgRow=document.getElementById('we-org-row');
+      if(cb.checked){
+        // Use the signup email (jane@example.com placeholder)
+        emailInput.value='jane@example.com';
+        emailInput.disabled=true;
+        emailInput.classList.add('bg-base','text-text-secondary');
+        orgRow.classList.add('hidden');
+      } else {
+        emailInput.value='';
+        emailInput.disabled=false;
+        emailInput.classList.remove('bg-base','text-text-secondary');
+        orgRow.classList.remove('hidden');
+      }
+    }
+
+    function switchPreview(mod){
+      S.mod=mod;
+      document.querySelectorAll('.mod-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');t.setAttribute('tabindex','-1');});
+      const activeTab=document.querySelector(`[data-mod-tab="${mod}"]`);
+      activeTab.classList.add('active');activeTab.setAttribute('aria-selected','true');activeTab.setAttribute('tabindex','0');
+      document.querySelectorAll('.preview-panel').forEach(p=>p.classList.remove('active'));
+      const pp=document.getElementById('preview-'+mod);
+      if(pp){void pp.offsetWidth;pp.classList.add('active');}
+    }
+
+    function jtbdSelect(mod,btn){
+      // Highlight selected pill
+      document.querySelectorAll('.jtbd-pill').forEach(p=>p.classList.remove('selected'));
+      btn.classList.add('selected');
+      // Just switch to that tab — do NOT add recommended badge (that only comes from autoRecommend)
+      switchPreview(mod);
+    }
+
+    function defaultRecommend(){
+      // Default recommendation for users who skipped segmentation
+      const tab=document.querySelector('[data-mod-tab="fax"]');
+      if(tab){
+        document.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('recommended'));
+        tab.classList.add('recommended');
+        switchPreview('fax');
+        const pills=document.querySelectorAll('.jtbd-pill');
+        pills.forEach(p=>p.classList.remove('selected'));
+        if(pills[0])pills[0].classList.add('selected');
+      }
+    }
+
+    function autoRecommend(){
+      // Based on segmentation answers, auto-recommend a module
+      const ind=S.seg.industry,role=S.seg.role;
+      let rec='fax'; // default: fax is the wedge
+      if(ind==='healthcare'&&(role==='ops'||role==='admin'))rec='fax';
+      else if(ind==='healthcare'&&role==='clinical')rec='automate';
+      else if(ind==='legal'&&role==='paralegal')rec='signature';
+      else if(role==='it')rec='api';
+      // Apply recommendation
+      const tab=document.querySelector(`[data-mod-tab="${rec}"]`);
+      if(tab){
+        document.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('recommended'));
+        tab.classList.add('recommended');
+        switchPreview(rec);
+        // Also highlight the matching JTBD pill
+        const pillMap={fax:0,signature:1,automate:2,engage:3,collect:4,api:5};
+        const pills=document.querySelectorAll('.jtbd-pill');
+        pills.forEach(p=>p.classList.remove('selected'));
+        if(pills[pillMap[rec]])pills[pillMap[rec]].classList.add('selected');
+      }
+    }
+
+    function selectMod(mod){S.mod=mod;S.path='sandbox';goToScreen(4);}
+
+    function directSetup(mod){
+      S.mod=mod;S.path='direct';
+      goToScreen(4);
+      document.getElementById('sandbox-active').classList.add('hidden');
+      document.getElementById('sandbox-workemail').classList.remove('hidden');
+      document.getElementById('we-heading').textContent="Let\u2019s set up your workspace";
+      document.getElementById('we-subtitle').textContent="Connect your work email to start using "+MC[mod].title.split(' ').slice(-1)[0]+" for real";
+      // Show skip recovery if segmentation was incomplete
+      const filled=Object.keys(S.seg).length;
+      const sr=document.getElementById('we-skip-recovery');
+      if(sr){sr.classList.toggle('hidden',filled>=3);}
+    }
+
+    function setupS4(){
+      const c=MC[S.mod]||MC.fax;
+      document.getElementById('sandbox-active').classList.remove('hidden');
+      document.getElementById('sandbox-workemail').classList.add('hidden');
+      document.getElementById('sandbox-title').textContent=c.title;
+      document.getElementById('sandbox-subtitle').textContent=c.sub;
+      document.getElementById('video-label').textContent=c.vl;
+      // Module-specific icon (no glow)
+      const icons={fax:'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',signature:'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',automate:'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',engage:'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',collect:'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',api:'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'};
+      const ic=icons[S.mod]||icons.fax;
+      const colors={fax:'#9432FD',signature:'#7C3AED',automate:'#6366F1',engage:'#9432FD',collect:'#14B8A6',api:'#64748B'};
+      const col=colors[S.mod]||colors.fax;
+      const iconEl=document.getElementById('sandbox-icon');
+      iconEl.style.background=col+'15';
+      iconEl.innerHTML='<svg class="w-7 h-7" fill="none" stroke="'+col+'" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="'+ic+'"/></svg>';
+      // Hide all sandbox cards
+      ['sb-fax','sb-signature','sb-automate','sb-engage','sb-collect','sb-api'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.add('hidden');});
+      // Reset each sandbox: show skeleton, hide live, re-enable CTA, reset steps
+      ['fax','signature','automate','engage','collect','api'].forEach(mod=>{
+        const skeleton=document.getElementById('sb-'+mod+'-skeleton');
+        const live=document.getElementById('sb-'+mod+'-live');
+        const cta=document.getElementById('sb-'+mod+'-cta');
+        if(skeleton)skeleton.classList.remove('hidden');
+        if(live){live.classList.add('hidden');
+          // Reset step opacity and text
+          live.querySelectorAll('.sb-step').forEach(s=>{s.style.opacity='0.3';const d=s.querySelector('div');if(d){d.classList.remove('bg-purple-core');d.classList.add('bg-floating');}const svg=s.querySelector('svg');if(svg){svg.classList.remove('text-white','text-purple-core');svg.classList.add('text-text-muted');}const sp=s.querySelector('span:last-child');if(sp)sp.textContent='-';});
+        }
+        if(cta){cta.disabled=false;cta.classList.remove('opacity-50');}
+        // Reset card visibility
+        const cardIds={fax:'sb-fax-card',signature:'sb-sig-card',automate:'sb-auto-card',engage:'sb-eng-card',collect:'sb-col-card',api:'sb-api-card'};
+        const card=document.getElementById(cardIds[mod]);
+        if(card)card.classList.add('hidden');
+      });
+      // Reset CTA button text
+      const ctaTexts={fax:'Send Fax',signature:'Send for Signature',automate:'Run Automation',engage:'Send Message',collect:'Send Form',api:'Run API Call'};
+      const cta=document.getElementById('sb-'+S.mod+'-cta');
+      if(cta)cta.textContent=ctaTexts[S.mod]||'Send';
+      // Show the right form
+      document.getElementById(c.sb).classList.remove('hidden');
+    }
+
+    // Randomization helpers for sandbox data
+    const _randNames=['Sarah Chen','Maria Garcia','James Wilson','Priya Patel','Robert Kim','Linda Nguyen','David Thompson','Aisha Johnson'];
+    const _randDobs=['03/15/1985','07/22/1978','11/03/1992','01/18/1965','09/27/1990','04/11/1983','12/05/1971','06/30/1988'];
+    const _randDrs=['Dr. Rajesh Patel','Dr. Emily Hartwell','Dr. Michael Torres','Dr. Susan Chang','Dr. Anthony Rivera'];
+    const _randDiag=['Suspected meniscal tear, right knee','Chronic lower back pain','Hypertension follow-up','Post-surgical evaluation','Cardiac arrhythmia workup'];
+    const _randIns=['Blue Shield PPO','Aetna HMO','United Healthcare','Cigna PPO','Medicare Part B'];
+    const _randInsId=['BSP-449821','AET-772103','UHC-338456','CIG-991247','MCR-556012'];
+    function _pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+    function _randFaxId(){return 'FX-2026-'+String(Math.floor(Math.random()*90000)+10000);}
+    function _randTime(){return (1.5+Math.random()*0.8).toFixed(1);}
+
+    function sbSend(mod){
+      // Disable the CTA button
+      const cta=document.getElementById('sb-'+mod+'-cta');
+      cta.disabled=true;
+      cta.textContent='Processing...';
+      cta.classList.add('opacity-50');
+      // Hide skeleton, show live result area
+      const skeleton=document.getElementById('sb-'+mod+'-skeleton');
+      const live=document.getElementById('sb-'+mod+'-live');
+      skeleton.classList.add('hidden');
+      live.classList.remove('hidden');
+      // Randomize total duration for variety
+      const totalBase=1.5+Math.random()*0.8;
+      // Animate the steps with stagger timing
+      const stepsContainerIds={fax:'sb-fax-steps',signature:'sb-sig-steps',automate:'sb-auto-steps',engage:'sb-eng-steps',collect:'sb-col-steps',api:'sb-api-steps'};
+      const progIds={fax:'sb-prog',signature:'sb-sig-prog',automate:'sb-auto-prog',engage:'sb-eng-prog',collect:'sb-col-prog',api:'sb-api-prog'};
+      const timerIds={fax:'sb-timer',signature:'sb-sig-timer',automate:'sb-auto-timer',engage:'sb-eng-timer',collect:'sb-col-timer',api:'sb-api-timer'};
+      const cardIds={fax:'sb-fax-card',signature:'sb-sig-card',automate:'sb-auto-card',engage:'sb-eng-card',collect:'sb-col-card',api:'sb-api-card'};
+      // Generate randomized step timings based on totalBase
+      function spreadTimings(count,total){const t=[0];for(let i=1;i<count;i++)t.push(+(total*i/(count)).toFixed(1));return t;}
+      const stepCounts={fax:4,signature:5,automate:5,engage:4,collect:5,api:4};
+      const timings={};Object.keys(stepCounts).forEach(k=>{timings[k]=spreadTimings(stepCounts[k],totalBase);});
+      const steps=document.getElementById(stepsContainerIds[mod]).querySelectorAll('.sb-step');
+      const prog=document.getElementById(progIds[mod]);
+      const timer=document.getElementById(timerIds[mod]);
+      const cardId=cardIds[mod];
+      const times=timings[mod]||timings.fax;
+      const total=totalBase;
+      let t=0,idx=0;
+      prog.style.width='0%';
+      const iv=setInterval(()=>{
+        t+=0.1;
+        prog.style.width=Math.min((t/total)*100,100)+'%';
+        timer.textContent=t.toFixed(1)+'s';
+        while(idx<times.length && t>=times[idx]){
+          const s=steps[idx];
+          if(s){
+            s.style.opacity='1';
+            s.querySelector('div').classList.remove('bg-floating');
+            s.querySelector('div').classList.add('bg-purple-core');
+            s.querySelector('svg').classList.remove('text-text-muted');
+            s.querySelector('svg').classList.add('text-white');
+            s.querySelector('span:last-child').textContent=times[idx].toFixed(1)+'s';
+          }
+          idx++;
+        }
+        if(t>=total){
+          clearInterval(iv);
+          timer.textContent=total.toFixed(1)+'s';
+          setTimeout(()=>{randomizeCardData(mod,total);document.getElementById(cardId).classList.remove('hidden');},300);
+        }
+      },100);
+    }
+
+    function randomizeCardData(mod,totalTime){
+      const card=document.getElementById({fax:'sb-fax-card',signature:'sb-sig-card',automate:'sb-auto-card',engage:'sb-eng-card',collect:'sb-col-card',api:'sb-api-card'}[mod]);
+      if(!card)return;
+      const name=_pick(_randNames),fid=_randFaxId(),ins=_pick(_randIns),insId=_pick(_randInsId),dr=_pick(_randDrs),dob=_pick(_randDobs),diag=_pick(_randDiag);
+      if(mod==='fax'){
+        const rows=card.querySelectorAll('.text-\\[10px\\].text-text-muted.font-mono');
+        rows.forEach(r=>{if(r.textContent.includes('FX-'))r.textContent=fid+' \u2022 3/3 pages \u2022 '+totalTime.toFixed(1)+'s';});
+      }
+      if(mod==='automate'){
+        const cells=card.querySelectorAll('.flex.justify-between');
+        cells.forEach(r=>{
+          const label=r.querySelector('.text-text-muted');
+          const val=r.querySelector('.text-text-primary, .font-medium');
+          if(!label||!val)return;
+          const l=label.textContent.trim();
+          if(l==='Patient')val.textContent=name;
+          else if(l==='DOB')val.textContent=dob;
+          else if(l==='Referring')val.textContent=dr+', St. James Hospital';
+          else if(l==='Diagnosis')val.textContent=diag;
+          else if(l==='Insurance')val.textContent=ins+' , '+insId;
+        });
+      }
+      if(mod==='collect'){
+        const cells=card.querySelectorAll('.flex.justify-between');
+        cells.forEach(r=>{
+          const label=r.querySelector('.text-text-muted');
+          const val=r.querySelector('.text-text-primary, .font-medium');
+          if(!label||!val)return;
+          const l=label.textContent.trim();
+          if(l==='Patient')val.textContent=name;
+          else if(l==='DOB')val.textContent=dob;
+          else if(l==='Insurance')val.innerHTML=ins+', Verified &#10003;, Copay: $'+Math.floor(Math.random()*4+1)*5;
+        });
+      }
+    }
+
+    function showWorkEmail(){
+      S.triedMods.add(S.mod);
+      document.getElementById('sandbox-active').classList.add('hidden');
+      document.getElementById('sandbox-workemail').classList.remove('hidden');
+      // Show skip recovery if segmentation was incomplete (less than 3 fields filled)
+      const filled=Object.keys(S.seg).length;
+      const sr=document.getElementById('we-skip-recovery');
+      if(sr){sr.classList.toggle('hidden',filled>=3);}
+    }
+
+    function setupS5(){
+      const m=S.mod,steps=NS[m]||NS.default;
+      document.getElementById('ns1t').textContent=steps[0].t;document.getElementById('ns1d').textContent=steps[0].d;
+      document.getElementById('ns2t').textContent=steps[1].t;document.getElementById('ns2d').textContent=steps[1].d;
+      document.getElementById('ns3t').textContent=steps[2].t;document.getElementById('ns3d').textContent=steps[2].d;
+      // 4th card: suggest an untried module
+      const crossSell={fax:'signature',signature:'automate',automate:'engage',engage:'collect',collect:'fax',api:'automate'};
+      const crossNames={fax:'Fax',signature:'E-Signature',automate:'Automate',engage:'Engage',collect:'Collect',api:'API'};
+      let suggest=crossSell[m]||'signature';
+      // Find first untried module
+      const allMods=['fax','signature','automate','engage','collect'];
+      const untried=allMods.filter(x=>x!==m&&!S.triedMods.has(x));
+      if(untried.length>0)suggest=untried[0];
+      S._ns4mod=suggest;
+      document.getElementById('ns4t').textContent='Try '+crossNames[suggest]+' next';
+      document.getElementById('ns4d').textContent=untried.length>1?untried.length+' more modules to explore':'Complete your platform setup';
+      const pl=document.getElementById('plat-list'),mods=['Fax','E-Signature','Automate','Engage','Collect'],am={fax:'Fax',signature:'E-Signature',automate:'Automate',engage:'Engage',collect:'Collect',api:'Fax'},act=am[m]||'Fax';
+      const modKey={Fax:'fax','E-Signature':'signature',Automate:'automate',Engage:'engage',Collect:'collect'};
+      pl.innerHTML='';mods.forEach(x=>{const a=x===act;const mk=modKey[x]||'fax';const tried=S.triedMods.has(mk);let label,cls,rowCls,dotCls,nameCls;if(a){label='Active';cls='text-white text-[10px] font-semibold bg-purple-core px-2 py-0.5 rounded-full';rowCls='bg-purple-core/[0.07] border border-purple-core/20 rounded-xl';dotCls='w-3 h-3 rounded-full bg-purple-core';nameCls='text-sm font-semibold text-purple-core';}else if(tried){label='Tried &#10003;';cls='text-[10px] text-purple-core/60 font-medium';rowCls='rounded-lg hover:bg-base';dotCls='w-2.5 h-2.5 rounded-full bg-purple-core/40';nameCls='text-sm text-text-secondary font-medium';}else{label='Try it &rarr;';cls='text-[10px] text-text-muted';rowCls='rounded-lg hover:bg-base';dotCls='w-2.5 h-2.5 rounded-full bg-text-muted';nameCls='text-sm text-text-secondary';}pl.innerHTML+=`<div onclick="goToScreen(3);setTimeout(()=>switchPreview('${mk}'),100)" class="flex items-center gap-3 px-3 py-2.5 transition-colors duration-200 cursor-pointer group ${rowCls}"><div class="${dotCls}"></div><span class="${nameCls} group-hover:text-purple-core">${x}</span><span class="${cls} ml-auto">${label}</span></div>`;});
+      // Show work email CTA for sandbox users, Quick Actions for direct users
+      const weCta=document.getElementById('explore-workemail-cta');
+      const qa=document.getElementById('explore-quick-actions');
+      if(S.path==='direct'){weCta.classList.add('hidden');qa.classList.remove('hidden');}
+      else{weCta.classList.remove('hidden');qa.classList.add('hidden');}
+    }
+
+    function updatePwStr(){
+      const v=document.getElementById('passwordInput').value,b=['str1','str2','str3','str4'].map(id=>document.getElementById(id)),txt=document.getElementById('strTxt');
+      let s=0;if(v.length>=8)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;
+      const c=['#EF4444','#F59E0B','#8B5CF6','#9432FD'],l=['Weak','Fair','Good','Strong'];
+      b.forEach((x,i)=>{x.style.backgroundColor=i<s?c[Math.min(s-1,3)]:'#EDE9E3';});
+      txt.textContent=v.length>0?l[Math.max(s-1,0)]:'';txt.style.color=v.length>0?c[Math.min(s-1,3)]:'';
+    }
+
+    function toggleAnnotations(){
+      ann=!ann;document.querySelectorAll('.strategy-tip').forEach(t=>t.classList.toggle('visible',ann));
+      const b=document.getElementById('annotationToggle');
+      b.classList.toggle('bg-purple-core',ann);b.classList.toggle('text-white',ann);b.classList.toggle('border-purple-core',ann);
+      b.classList.toggle('text-purple-core',!ann);b.classList.toggle('border-purple-core/30',!ann);
+    }
+
+    // === C3: Form validation ===
+    function showFieldError(input,msg){
+      clearFieldError(input);
+      input.classList.add('border-red-400');
+      input.classList.remove('border-border');
+      const err=document.createElement('p');
+      err.className='field-error text-[11px] text-red-500 mt-1';
+      err.textContent=msg;
+      input.parentElement.appendChild(err);
+    }
+    function clearFieldError(input){
+      input.classList.remove('border-red-400');
+      input.classList.add('border-border');
+      const err=input.parentElement.querySelector('.field-error');
+      if(err) err.remove();
+    }
+    function validateName(){
+      const input=document.getElementById('nameInput');
+      if(!input.value.trim()){showFieldError(input,'Please enter your name');return false;}
+      clearFieldError(input);return true;
+    }
+    function validateEmail(){
+      const input=document.getElementById('emailInput');
+      const v=input.value.trim();
+      if(!v){showFieldError(input,'Please enter your email');return false;}
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){showFieldError(input,'Please enter a valid email address');return false;}
+      clearFieldError(input);return true;
+    }
+    function validatePassword(){
+      const input=document.getElementById('passwordInput');
+      const v=input.value;
+      if(v.length<8){showFieldError(input,'Password must be at least 8 characters');return false;}
+      clearFieldError(input);return true;
+    }
+    document.getElementById('nameInput').addEventListener('blur',validateName);
+    document.getElementById('emailInput').addEventListener('blur',validateEmail);
+    document.getElementById('passwordInput').addEventListener('blur',validatePassword);
+
+    function handleSignup(){
+      const v1=validateName(),v2=validateEmail(),v3=validatePassword();
+      if(!v1||!v2||!v3) return;
+      // Loading state
+      const btn=document.getElementById('signupBtn');
+      btn.disabled=true;btn.innerHTML='<svg class="animate-spin inline w-4 h-4 mr-2 -mt-0.5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>Creating account...';
+      btn.style.opacity='0.7';
+      // Simulate API call
+      setTimeout(()=>{
+        const name=document.getElementById('nameInput').value.trim().split(' ')[0]||'there';
+        btn.innerHTML='<svg class="inline w-4 h-4 mr-2 -mt-0.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Welcome, '+name+'!';
+        btn.style.opacity='1';
+        setTimeout(()=>{
+          btn.disabled=false;btn.innerHTML='Get Started Free';
+          goToScreen(2);
+        },600);
+      },800);
+    }
+
+    // === C4: State persistence ===
+    function saveState(){
+      const data={screen:S.screen,mod:S.mod,seg:S.seg,triedMods:[...S.triedMods]};
+      try{sessionStorage.setItem('amplify_signup_state',JSON.stringify(data));}catch(e){}
+    }
+    function loadState(){
+      try{
+        const raw=sessionStorage.getItem('amplify_signup_state');
+        if(!raw) return false;
+        const data=JSON.parse(raw);
+        S.screen=data.screen||1;S.mod=data.mod||'fax';S.seg=data.seg||{};
+        S.triedMods=new Set(data.triedMods||[]);
+        return true;
+      }catch(e){return false;}
+    }
+    window.addEventListener('beforeunload',function(e){
+      if(S.screen>=2&&S.screen<=4){e.preventDefault();e.returnValue='';}
+    });
+
+    // Arrow key navigation for radiogroup pill containers
+    document.querySelectorAll('[role="radiogroup"]').forEach(group=>{
+      group.addEventListener('keydown',function(e){
+        if(!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key))return;
+        e.preventDefault();
+        const btns=[...group.querySelectorAll('button:not(.hidden)')];
+        const cur=btns.indexOf(document.activeElement);
+        if(cur===-1)return;
+        const next=(e.key==='ArrowRight'||e.key==='ArrowDown')?(cur+1)%btns.length:(cur-1+btns.length)%btns.length;
+        btns[next].focus();
+      });
+    });
+
+    // Restore state on load
+    if(loadState()&&S.screen>1){goToScreen(S.screen);}
+    else{goToScreen(1);}
+  </script>
+</body>
+</html>
