@@ -91,6 +91,18 @@
 
     .step-btn-active{background:#9432FD !important;color:white !important;box-shadow:0 2px 10px rgba(148,50,253,0.35);}
 
+    /* Arrow stepper */
+    .stepper{display:flex;align-items:center;gap:0;}
+    .step-item{display:flex;align-items:center;gap:6px;cursor:pointer;padding:4px 2px;border-radius:6px;transition:opacity 0.2s ease;}
+    .step-item:hover{opacity:0.85;}
+    .step-circle{width:22px;height:22px;border-radius:50%;border:2px solid #E0DCD6;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#8A8690;background:transparent;transition:background-color 0.3s ease,border-color 0.3s ease,transform 0.2s ease,box-shadow 0.3s ease;flex-shrink:0;}
+    .step-circle.active{background:#9432FD;border-color:#9432FD;color:white;box-shadow:0 0 0 3px rgba(148,50,253,0.18);transform:scale(1.08);}
+    .step-circle.completed{background:#22C55E;border-color:#22C55E;color:white;}
+    .step-label{font-size:11px;font-weight:500;color:#8A8690;transition:color 0.3s ease;white-space:nowrap;}
+    .step-item.active .step-label{color:#0B0F1A;font-weight:600;}
+    .step-item.completed .step-label{color:#9432FD;}
+    .step-arrow{color:#D1CDC6;margin:0 6px;flex-shrink:0;}
+
     @keyframes celebrateScale{0%{transform:scale(0);opacity:0;}60%{transform:scale(1.12);}100%{transform:scale(1);opacity:1;}}
     .celebrate-in{animation:celebrateScale 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;}
     @keyframes sendingPulse{0%,100%{opacity:0.5;}50%{opacity:1;}}
@@ -121,12 +133,31 @@
       <div class="flex items-center gap-4">
         <span class="text-[10px] font-mono text-purple-core uppercase tracking-[0.15em] font-semibold">PLG Signup Flow</span>
         <div class="w-px h-4 bg-border"></div>
-        <div class="flex gap-1 bg-floating/60 p-1 rounded-lg">
-          <button onclick="goToScreen(1)" data-step-btn="1" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Sign Up</button>
-          <button onclick="goToScreen(2)" data-step-btn="2" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Your Work</button>
-          <button onclick="goToScreen(3)" data-step-btn="3" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Try Amplify</button>
-          <button onclick="goToScreen(4)" data-step-btn="4" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Sandbox</button>
-          <button onclick="goToScreen(5)" data-step-btn="5" class="step-btn px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-300 text-text-secondary hover:text-text-primary">Explore</button>
+        <div class="stepper" id="stepper-nav">
+          <div class="step-item active" onclick="goToScreen(1)" data-step="1">
+            <div class="step-circle active">1</div>
+            <span class="step-label">Sign Up</span>
+          </div>
+          <svg class="step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="step-item" onclick="goToScreen(2)" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Your Work</span>
+          </div>
+          <svg class="step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="step-item" onclick="goToScreen(3)" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Try Amplify</span>
+          </div>
+          <svg class="step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="step-item" onclick="goToScreen(4)" data-step="4">
+            <div class="step-circle">4</div>
+            <span class="step-label">Sandbox</span>
+          </div>
+          <svg class="step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="step-item" onclick="goToScreen(5)" data-step="5">
+            <div class="step-circle">5</div>
+            <span class="step-label">Explore</span>
+          </div>
         </div>
       </div>
       <button onclick="toggleAnnotations()" id="annotationToggle" class="px-3 py-1.5 rounded-md text-xs font-medium text-purple-core border border-purple-core/30 hover:bg-purple-subtle transition-all duration-200">
@@ -779,6 +810,16 @@
       document.querySelectorAll('.step-btn').forEach(b=>{b.classList.remove('step-btn-active');b.classList.add('text-text-secondary');});
       const ab=document.querySelector(`[data-step-btn="${n}"]`);
       if(ab){ab.classList.add('step-btn-active');ab.classList.remove('text-text-secondary');}
+      // Update arrow stepper
+      document.querySelectorAll('.step-item').forEach(item=>{
+        const step=parseInt(item.dataset.step);
+        const circle=item.querySelector('.step-circle');
+        item.classList.remove('active','completed');
+        circle.classList.remove('active','completed');
+        if(step<n){item.classList.add('completed');circle.classList.add('completed');circle.innerHTML='<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';}
+        else if(step===n){item.classList.add('active');circle.classList.add('active');circle.textContent=step;}
+        else{circle.textContent=step;}
+      });
       if(n===3){if(Object.keys(S.seg).length>0)setTimeout(autoRecommend,200);else setTimeout(defaultRecommend,200);}
       if(n===4)setupS4();if(n===5)setupS5();
       window.scrollTo({top:0,behavior:'smooth'});
