@@ -3,9 +3,9 @@ temporary screenshots/
 docx_tmp/
 unpacked-loom/
 *.docx
-company logos/Amplify Demo Image.JPG
-company logos/General_Mills_logo.svg.png
-company logos/g2 logo.png
+website material/Amplify Demo Image.JPG
+website material/General_Mills_logo.svg.png
+website material/g2 logo.png
 .claude/
 CLAUDE.md
 package.json
