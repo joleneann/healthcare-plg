@@ -14,7 +14,7 @@ The north-star metric throughout: **Revenue per Visitor** (conversion rate × AC
 
 ## Artifacts
 
-### 1. `index.html` — Marketing Website (Visit → Signup)
+### 1. Marketing Website (Visit → Signup)
 **[Live demo](https://joleneann.github.io/healthcare-plg/)**
 
 Top-of-funnel conversion page demonstrating:
@@ -24,7 +24,7 @@ Top-of-funnel conversion page demonstrating:
 - Social proof architecture (G2 data, customer logos, testimonials)
 - Persistent, context-aware CTAs across scroll depth
 
-### 2. `signup-flow.html` — Onboarding Flow (Signup → Activation)
+### 2. Onboarding Flow (Signup → Activation)
 **[Live demo](https://joleneann.github.io/healthcare-plg/signup-flow.html)**
 
 5-screen self-serve activation journey demonstrating:
