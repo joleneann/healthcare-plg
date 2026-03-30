@@ -73,47 +73,6 @@ A 6-screen self-serve activation journey. Each screen has a "Strategy Notes" tog
 
 ---
 
-## Strategic Methodology
-
-This case study applies four frameworks:
-
-**CXL Landing Page Optimization**
-- Three friction types addressed systematically: interactive (email-only forms, inline CTAs), cognitive (progressive disclosure via tabs, bullet points over paragraphs), emotional (social proof at every decision point, compliance badges at conversion)
-- First screenful treated as standalone mini-page (100% of visitors see it)
-- Every section earns the next scroll: Problem, Solution, Proof, Detail, Proof, Convert
-
-**AmpleMarket Structural Patterns**
-- Testimonial rhythm: feature section then proof break then feature section. Testimonials are not grouped in one block - each validates the section above it
-- Accordion tab pattern for platform capabilities (the "all-in-one platform" section): vertical tabs on left, content panel on right, colored dot indicators
-- Final CTA as a distinct dark block with visual contrast
-
-**Competitive Gap Analysis**
-- Six competitors mapped across capabilities: Consensus Cloud/eFax, Documo, Retarus, Updox, Klara, Doximity
-- Identified that no competitor combines all six capabilities (cloud fax, AI classification, workflow orchestration, secure messaging, e-signature, forms)
-- Comparison grid uses category labels instead of naming competitors directly
-
-**Jobs-to-be-Done Framework**
-- Onboarding routes users by problem, not by product name
-- Segmentation data (industry + role) drives module recommendations
-- Sandbox activation creates psychological ownership before signup
-
----
-
-## Competitive Landscape
-
-| Capability | Cloud Fax (eFax, Consensus) | Communications (Updox, Klara) | Document Processing (Documo) | **Docflow** |
-|---|---|---|---|---|
-| Cloud fax | Yes | No | No | **Yes** |
-| AI document classification | Partial | No | Yes | **Yes** |
-| Workflow orchestration | No | No | No | **Yes** |
-| Secure messaging | No | Yes | No | **Yes** |
-| E-signature & forms | No | Partial | No | **Yes** |
-| Full audit trail | Partial | No | No | **Yes** |
-
-The differentiator is not any single capability. It is the unified flow.
-
----
-
 ## Stack
 
 Single HTML files, all styles inline. Tailwind CSS via CDN. Google Fonts (Plus Jakarta Sans, Inter, JetBrains Mono). No build step, no framework, no proprietary CDN dependencies.
