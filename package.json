@@ -3,8 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "serve": "node serve.mjs",
-    "screenshot": "node screenshot.mjs"
+    "serve": "node scripts/serve.mjs",
+    "screenshot": "node scripts/screenshot.mjs"
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
