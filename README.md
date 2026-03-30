@@ -2,6 +2,10 @@
 
 This is a demonstration of how I approach PLG redesign for a regulated healthcare SaaS product. Fully functional prototype built in HTML/CSS.
 
+**Live demos:**
+- [Marketing Website](https://joleneann.github.io/healthcare-plg/) — Visit → Signup conversion
+- [Onboarding Flow](https://joleneann.github.io/healthcare-plg/signup-flow.html) — Signup → Activation
+
 ---
 
 ## What This Is
@@ -41,16 +45,6 @@ Top-of-funnel conversion page demonstrating:
 - **Sandbox-first activation** — users touch a real workflow before giving work email
 - **Post-value monetization** — work-email gate and upgrade nudges appear after the "aha moment"
 - **Role-based value props** — Ops, Compliance, IT, Front Desk each get a tailored pitch
-
----
-
-## Running Locally
-
-```bash
-npm install
-node serve.mjs
-# Open http://localhost:3000
-```
 
 ---
 
