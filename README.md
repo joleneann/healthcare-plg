@@ -1,7 +1,5 @@
 # PLG Growth Case Study: Healthcare SaaS Website + Signup Flow Redesign
 
-**Repo:** https://github.com/joleneann/healthcare-plg
-
 This is a demonstration of how I approach PLG redesign for a regulated healthcare SaaS product. Fully functional prototype built in HTML/CSS.
 
 ---
