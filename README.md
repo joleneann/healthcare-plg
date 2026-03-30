@@ -18,12 +18,12 @@ The north-star metric throughout: **Revenue per Visitor** (conversion rate x ACV
 **[Live demo](https://joleneann.github.io/healthcare-plg/)**
 
 Top-of-funnel conversion page demonstrating:
-- Tabbed platform demos with live UI previews (Fax / Automate / Engage / Collect)
-- Animated workflow pipeline: Received -> Classified -> Routed -> Actioned -> Archived
-- Competitor comparison grid positioning Docflow's unified flow vs. point solutions
-- G2 social proof, customer logos, and testimonials threaded as proof breaks
+- Tabbed platform demos with live UI previews (eFax / Document Processing / Secure Communications / eSign)
+- Animated workflow pipeline: Received -> Classified -> Routed -> Actioned -> Archived -> Audited
+- Competitor comparison grid showing where single-purpose tools fall short
+- G2 social proof (#25 on G2, real healthcare customer logos, testimonials as proof breaks)
 - Role-targeted value props for Ops, Compliance, IT, and Front Desk
-- Dual conversion paths (free trial + demo) with persistent email capture
+- Dual conversion paths (free trial + demo request) with consistent CTA ordering
 
 ### 2. Onboarding Flow (Signup -> Activation)
 **[Live demo](https://joleneann.github.io/healthcare-plg/signup-flow.html)**

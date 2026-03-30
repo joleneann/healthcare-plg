@@ -475,12 +475,29 @@
       background: #0F6FDE;
     }
 
-    /* Grid background pattern for hero */
-    .hero-grid {
-      background-image:
-        linear-gradient(rgba(66, 85, 138, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(66, 85, 138, 0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
+    /* Mesh gradient + grain for dark sections */
+    .dark-mesh {
+      position: relative;
+      background: #0A1628;
+    }
+    .dark-mesh::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(15,111,222,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0,230,254,0.06) 0%, transparent 40%),
+        radial-gradient(ellipse at 60% 80%, rgba(91,163,245,0.10) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    .dark-mesh::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      pointer-events: none;
     }
 
     /* Tab content transition */
@@ -532,11 +549,11 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between relative">
       <!-- Logo -->
       <a href="#" class="flex items-center group" aria-label="Docflow Home">
-        <svg class="h-7 transition-opacity group-hover:opacity-80" viewBox="0 0 140 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: opacity 0.2s ease;">
-          <rect x="0" y="4" width="20" height="20" rx="4" fill="#0F6FDE"/>
-          <path d="M6 11l4 4 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M10 15V9" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <text x="26" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="18" fill="white">Docflow</text>
+        <svg class="h-9 transition-opacity group-hover:opacity-80" viewBox="0 0 155 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: opacity 0.2s ease;">
+          <rect x="0" y="4" width="24" height="24" rx="5" fill="#0F6FDE"/>
+          <path d="M7 13l5 5 5-5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 18V11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <text x="30" y="23" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="21" fill="white">Docflow</text>
         </svg>
       </a>
 
@@ -550,10 +567,10 @@
 
       <!-- CTA Buttons -->
       <div class="hidden md:flex items-center gap-4">
-        <a href="#" class="text-sm text-gray-350 font-medium hover:text-white transition-colors focus-visible:text-white">Request Demo</a>
         <a href="#get-early-access" class="glass-btn active:scale-95 focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: transform 0.15s ease;">
           <span class="glass-inner text-sm" style="padding: 8px 16px;">Try for free</span>
         </a>
+        <a href="#" class="text-sm text-gray-350 font-medium hover:text-white transition-colors focus-visible:text-white">Request Demo</a>
       </div>
 
       <!-- Mobile menu button -->
@@ -584,34 +601,31 @@
   <!-- ============================================ -->
   <!-- HERO SECTION -->
   <!-- ============================================ -->
-  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden hero-grid" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden dark-mesh">
 
     <div class="relative max-w-4xl mx-auto px-6 text-center">
       <!-- Eyebrow badge -->
       <div class="reveal inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gray-550/20 bg-white/5 mb-8">
-        <span class="font-mono text-[10px] uppercase tracking-widest text-gray-350">Trusted by 7,000+ Healthcare Orgs</span>
+        <span class="font-body text-[10px] uppercase tracking-widest text-gray-350">Trusted by 7,000+ organizations</span>
       </div>
 
       <!-- H1 -->
       <h1 class="reveal font-display font-semibold text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[1.1] mb-6" style="background: linear-gradient(269deg, #D5FBFF 63%, #00E6FE); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-        Healthcare runs on documents.<br>Docflow runs the workflow.
+        Healthcare runs on documents,<br>Docflow makes them move
       </h1>
 
       <!-- Subtitle -->
-      <p class="reveal text-gray-350 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-        Unify fax, secure messaging, e-signature, and AI automation into one HIPAA-compliant workflow platform, so nothing falls through the cracks.
+      <p class="reveal text-gray-350 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10">
+        Unify eFax, eSign, document processing and secure communications into one HIPAA-compliant workflow platform, with full accountability at every step
       </p>
 
-      <!-- CTA: Email + Try for free -->
+      <!-- CTA Buttons -->
       <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-        <div class="flex items-center rounded-full border border-gray-550/30 bg-white/5 overflow-hidden" style="backdrop-filter: blur(8px);">
-          <input type="email" placeholder="Enter your email" class="bg-transparent text-white text-sm px-5 py-3 outline-none placeholder-gray-350 w-56 md:w-64" />
-          <button class="bg-purple-core text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-purple-light active:scale-95 focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: background-color 0.2s ease, transform 0.15s ease;">
-            Try for free
-          </button>
-        </div>
+        <a href="#" class="bg-purple-core text-white text-sm font-semibold px-8 py-3 rounded-full hover:bg-purple-light active:scale-95 focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: background-color 0.2s ease, transform 0.15s ease;">
+          Try for free
+        </a>
         <a href="#" class="inline-flex items-center px-7 py-3 rounded-full text-sm font-medium border border-gray-550/30 text-white hover:border-purple-core hover:text-purple-core focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: border-color 0.2s ease, color 0.2s ease;">
-          Request Demo &rarr;
+          Request Demo
         </a>
       </div>
 
@@ -619,17 +633,15 @@
       <p class="reveal flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-gray-350 mb-10">
         <span class="flex items-center gap-1.5">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          4.8/5 from 7,253 reviews
+          4.8/5 from 7,253 G2 reviews
         </span>
         <span class="text-gray-550">|</span>
-        <span>HIPAA Compliant</span>
-        <span class="text-gray-550">|</span>
-        <span>SOC 2</span>
+        <span>HIPAA, SOC 2 &amp; ISO 27001 compliant</span>
       </p>
 
       <!-- Demo video placeholder -->
       <div class="reveal relative max-w-3xl mx-auto rounded-2xl overflow-hidden" style="box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 60px rgba(15,111,222,0.1);">
-        <img src="illustrations/demo-image.jpg" alt="Docflow platform demo" class="w-full" style="display: block;" />
+        <img src="illustrations/mockscreen.png?v=2" alt="Docflow platform demo" class="w-full" style="display: block;" />
         <!-- Play button overlay -->
         <button class="absolute inset-0 flex items-center justify-center group" aria-label="Play demo video">
           <div class="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 group-hover:bg-white" style="transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background-color 0.2s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
@@ -652,25 +664,24 @@
       <div class="marquee-container">
         <div class="marquee-track">
           <!-- First set -->
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Meridian Health System"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Meridian Health</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Pinnacle Medical Group"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Pinnacle Medical</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Coastal Care Network"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Coastal Care</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Summit Health Partners"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Summit Health</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Bridgewater Clinics"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Bridgewater Clinics</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Clearview Hospital Network"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Clearview Hospital</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Pacific Regional Health"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Pacific Regional</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Northern Valley Medical"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Northern Valley</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Atlas Healthcare Solutions"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Atlas Healthcare</span></div>
+          <!-- First set -->
+          <div class="logo-box" style="background-image:url('company logos/2019_HCA_logo.svg.png'); background-size: 70%;" aria-label="HCA Healthcare"></div>
+          <div class="logo-box" style="background-image:url('company logos/CVS_Health-Logo.wine.png');" aria-label="CVS Health"></div>
+          <div class="logo-box" style="background-image:url('company logos/mckesson.jpg');" aria-label="McKesson"></div>
+          <div class="logo-box" style="background-image:url('company logos/Johnson_%26_Johnson-Logo.wine.png');" aria-label="Johnson & Johnson"></div>
+          <div class="logo-box" style="background-image:url('company logos/abbvie.png');" aria-label="AbbVie"></div>
+          <div class="logo-box" style="background-image:url('company logos/Alliance_Healthcare_logo.svg.png'); background-size: 70%;" aria-label="Alliance Healthcare"></div>
+          <div class="logo-box" style="background-image:url('company logos/AIC.png');" aria-label="AIC"></div>
+          <div class="logo-box" style="background-image:url('company logos/palnned parenthood.png');" aria-label="Planned Parenthood"></div>
           <!-- Duplicate set for seamless loop -->
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Meridian Health System"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Meridian Health</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Pinnacle Medical Group"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Pinnacle Medical</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Coastal Care Network"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Coastal Care</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Summit Health Partners"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Summit Health</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Bridgewater Clinics"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Bridgewater Clinics</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Clearview Hospital Network"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Clearview Hospital</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Pacific Regional Health"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Pacific Regional</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Northern Valley Medical"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Northern Valley</span></div>
-          <div class="logo-box flex items-center justify-center" style="background-image:none;" aria-label="Atlas Healthcare Solutions"><span class="font-display font-bold text-sm text-gray-500 whitespace-nowrap">Atlas Healthcare</span></div>
+          <div class="logo-box" style="background-image:url('company logos/2019_HCA_logo.svg.png'); background-size: 70%;" aria-label="HCA Healthcare"></div>
+          <div class="logo-box" style="background-image:url('company logos/CVS_Health-Logo.wine.png');" aria-label="CVS Health"></div>
+          <div class="logo-box" style="background-image:url('company logos/mckesson.jpg');" aria-label="McKesson"></div>
+          <div class="logo-box" style="background-image:url('company logos/Johnson_%26_Johnson-Logo.wine.png');" aria-label="Johnson & Johnson"></div>
+          <div class="logo-box" style="background-image:url('company logos/abbvie.png');" aria-label="AbbVie"></div>
+          <div class="logo-box" style="background-image:url('company logos/Alliance_Healthcare_logo.svg.png'); background-size: 70%;" aria-label="Alliance Healthcare"></div>
+          <div class="logo-box" style="background-image:url('company logos/AIC.png');" aria-label="AIC"></div>
+          <div class="logo-box" style="background-image:url('company logos/palnned parenthood.png');" aria-label="Planned Parenthood"></div>
         </div>
       </div>
     </div>
@@ -680,10 +691,10 @@
   <!-- ============================================ -->
   <!-- TESTIMONIAL #1 -->
   <!-- ============================================ -->
-  <section class="py-20 md:py-24" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section class="py-20 md:py-24 dark-mesh">
     <div class="max-w-3xl mx-auto px-6 text-center reveal">
       <blockquote class="font-body text-xl md:text-2xl font-medium italic leading-relaxed text-white/90 mb-8">
-        &ldquo;We replaced three separate systems with one platform. Prior authorization turnaround dropped by 40%, and our compliance team finally has real-time visibility.&rdquo;
+        &ldquo;We replaced three separate tools with Docflow. Prior authorization turnaround dropped by 40%, and our compliance team finally has real-time visibility.&rdquo;
       </blockquote>
       <div class="flex items-center justify-center gap-4">
         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Chen" class="w-12 h-12 rounded-full object-cover">
@@ -703,80 +714,80 @@
     <div class="max-w-7xl mx-auto px-6">
       <!-- Section header -->
       <div class="text-center mb-16 reveal">
-        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">One platform for how healthcare work actually gets done</h2>
-        <p class="text-gray-350 text-lg max-w-2xl mx-auto">Give your team the power to move faster and stay compliant from day one.</p>
+        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">From inbox to action in one system</h2>
+        <p class="text-gray-350 text-lg max-w-3xl mx-auto">Replace your patchwork of tools with one system that stays compliant by default</p>
       </div>
 
       <!-- Tabs layout -->
       <div class="flex flex-col lg:flex-row gap-8 reveal">
         <!-- Tab buttons (left side) -->
         <div class="lg:w-2/5 space-y-3" role="tablist">
-          <!-- Fax Tab -->
-          <button role="tab" aria-selected="true" aria-controls="tab-fax" data-tab="fax"
+          <!-- eFax Tab -->
+          <button role="tab" aria-selected="true" aria-controls="tab-efax" data-tab="efax"
             class="tab-btn tab-active w-full text-left p-5 rounded-xl border border-gray-550/20 bg-floating/50 hover:bg-floating focus-visible:outline-2 focus-visible:outline-purple-core transition-colors"
             style="transition: background-color 0.2s ease, border-color 0.2s ease;">
             <div class="flex items-center gap-3 mb-2">
               <span class="tab-icon w-8 h-8 shrink-0"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.7646 10.7904H27.2747V10.3576L19.0519 1.26953L16.7646 10.7904Z" fill="#F6F2EE"/><path d="M29.2169 8.97538L20.6015 0.36C20.4872 0.245743 20.3514 0.155141 20.202 0.093371C20.0526 0.031601 19.8924 -0.000126752 19.7308 3.80552e-07H4.96154C4.3087 3.80552e-07 3.6826 0.25934 3.22097 0.720968C2.75934 1.1826 2.5 1.8087 2.5 2.46154V29.5385C2.5 30.1913 2.75934 30.8174 3.22097 31.279C3.6826 31.7407 4.3087 32 4.96154 32H27.1154C27.7682 32 28.3943 31.7407 28.856 31.279C29.3176 30.8174 29.5769 30.1913 29.5769 29.5385V9.84615C29.5771 9.68448 29.5453 9.52436 29.4836 9.37495C29.4218 9.22554 29.3312 9.08977 29.2169 8.97538ZM20.2824 9.84615C19.9777 9.84615 19.7308 9.59919 19.7308 9.29454V3.74278C19.7308 3.49706 20.0279 3.374 20.2016 3.54775L26.0292 9.37532C26.2029 9.54907 26.0799 9.84615 25.8341 9.84615H20.2824Z" fill="#0F6FDE"/><path d="M8.58496 10.9531H13.8671" stroke="#F6F2EE" stroke-width="1.93064" stroke-linecap="round"/><path d="M8.58496 17.6445H22.1424" stroke="#F6F2EE" stroke-width="1.93064" stroke-linecap="round"/><path d="M8.56836 24.5273H22.1258" stroke="#F6F2EE" stroke-width="1.93064" stroke-linecap="round"/></svg></span>
-              <span class="tab-label font-display font-bold text-white">Fax</span>
+              <span class="tab-label font-display font-bold text-white">eFax</span>
             </div>
             <div class="tab-expand">
-              <p class="text-sm text-gray-350 leading-relaxed">Manage inbound, outbound, and broadcast faxing through shared inboxes designed for high-volume intake, intelligent routing, and coordinated team processing.</p>
+              <p class="text-sm text-gray-350 leading-relaxed">Your fax machine, replaced. Send, receive, and route faxes digitally with shared inboxes and real-time delivery status.</p>
             </div>
           </button>
 
-          <!-- Automate Tab -->
-          <button role="tab" aria-selected="false" aria-controls="tab-automate" data-tab="automate"
+          <!-- Document Processing Tab -->
+          <button role="tab" aria-selected="false" aria-controls="tab-docprocessing" data-tab="docprocessing"
             class="tab-btn w-full text-left p-5 rounded-xl border border-transparent bg-elevated/50 hover:bg-floating/30 focus-visible:outline-2 focus-visible:outline-purple-core transition-colors"
             style="transition: background-color 0.2s ease, border-color 0.2s ease;">
             <div class="flex items-center gap-3 mb-2">
               <span class="tab-icon w-8 h-8 shrink-0"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip_auto)"><path d="M26.4837 18.7553C26.4865 19.2052 26.3498 19.6448 26.0925 20.0138C25.8352 20.3827 25.4698 20.6629 25.0467 20.8157L17.9335 23.4442L15.3133 30.5629C15.1581 30.9845 14.8774 31.3483 14.5089 31.6052C14.1405 31.8622 13.7021 32 13.2529 32C12.8037 32 12.3654 31.8622 11.9969 31.6052C11.6285 31.3483 11.3478 30.9845 11.1926 30.5629L8.55583 23.4442L1.43708 20.8239C1.01554 20.6688 0.651737 20.388 0.39476 20.0196C0.137783 19.6512 0 19.2128 0 18.7636C0 18.3144 0.137783 17.876 0.39476 17.5076C0.651737 17.1392 1.01554 16.8584 1.43708 16.7033L8.55583 14.0665L11.1761 6.94775C11.3312 6.52621 11.612 6.1624 11.9804 5.90543C12.3488 5.64845 12.7872 5.51067 13.2364 5.51067C13.6856 5.51067 14.124 5.64845 14.4924 5.90543C14.8608 6.1624 15.1416 6.52621 15.2967 6.94775L17.9335 14.0665L25.0522 16.6867C25.4757 16.8409 25.8408 17.1227 26.0972 17.4932C26.3536 17.8638 26.4886 18.3051 26.4837 18.7553ZM23.174 5.51627H25.3805C25.6731 5.51627 25.9537 5.40004 26.1606 5.19314C26.3675 4.98624 26.4837 4.70562 26.4837 4.41302C26.4837 4.12042 26.3675 3.8398 26.1606 3.6329C25.9537 3.426 25.6731 3.30976 25.3805 3.30976H23.174V1.10325C23.174 0.810654 23.0577 0.530036 22.8508 0.323136C22.6439 0.116235 22.3633 0 22.0707 0C21.7781 0 21.4975 0.116235 21.2906 0.323136C21.0837 0.530036 20.9674 0.810654 20.9674 1.10325V3.30976H18.7609C18.4683 3.30976 18.1877 3.426 17.9808 3.6329C17.7739 3.8398 17.6577 4.12042 17.6577 4.41302C17.6577 4.70562 17.7739 4.98624 17.9808 5.19314C18.1877 5.40004 18.4683 5.51627 18.7609 5.51627ZM30.8967 9.92929H29.7935V8.82604C29.7935 8.53344 29.6773 8.25282 29.4704 8.04592C29.2635 7.83902 28.9828 7.72278 28.6902 7.72278C28.3976 7.72278 28.117 7.83902 27.9101 8.04592C27.7032 8.25282 27.587 8.53344 27.587 8.82604V9.92929H26.4837C26.1911 9.92929 25.9105 10.0455 25.7036 10.2524C25.4967 10.4593 25.3805 10.7399 25.3805 11.0325C25.3805 11.3252 25.4967 11.6058 25.7036 11.8127C25.9105 12.0196 26.1911 12.1358 26.4837 12.1358H27.587V13.2391C27.587 13.5317 27.7032 13.8123 27.9101 14.0192C28.117 14.2261 28.3976 14.3423 28.6902 14.3423C28.9828 14.3423 29.2635 14.2261 29.4704 14.0192C29.6773 13.8123 29.7935 13.5317 29.7935 13.2391V12.1358H30.8967C31.1893 12.1358 31.47 12.0196 31.6769 11.8127C31.8838 11.6058 32 11.3252 32 11.0325C32 10.7399 31.8838 10.4593 31.6769 10.2524C31.47 10.0455 31.1893 9.92929 30.8967 9.92929Z" fill="#0F6FDE"/></g><defs><clipPath id="clip_auto"><rect width="32" height="32" fill="white"/></clipPath></defs></svg></span>
-              <span class="tab-label font-display font-bold text-white">Automate</span>
+              <span class="tab-label font-display font-bold text-white">Document Processing</span>
             </div>
             <div class="tab-expand hidden">
-              <p class="text-sm text-gray-350 leading-relaxed">AI classifies incoming documents, extracts structured data, and triggers the right workflow. Human when judgment matters. Automation when speed matters.</p>
+              <p class="text-sm text-gray-350 leading-relaxed">Every incoming document gets classified, data gets extracted, and the right person gets notified. No manual sorting required.</p>
             </div>
           </button>
 
-          <!-- Engage Tab -->
-          <button role="tab" aria-selected="false" aria-controls="tab-engage" data-tab="engage"
+          <!-- Secure Communications Tab -->
+          <button role="tab" aria-selected="false" aria-controls="tab-securecomms" data-tab="securecomms"
             class="tab-btn w-full text-left p-5 rounded-xl border border-transparent bg-elevated/50 hover:bg-floating/30 focus-visible:outline-2 focus-visible:outline-purple-core transition-colors"
             style="transition: background-color 0.2s ease, border-color 0.2s ease;">
             <div class="flex items-center gap-3 mb-2">
               <span class="tab-icon w-8 h-8 shrink-0"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip_engage)"><path d="M16.005 3.81039e-07C13.2424 -0.000602402 10.5267 0.713982 8.1222 2.0742C5.71771 3.43442 3.70638 5.39393 2.28398 7.762C0.86157 10.1301 0.0765483 12.826 0.00532042 15.5875C-0.0659074 18.3489 0.579086 21.0818 1.87752 23.52L0.131197 28.7585C-0.0134556 29.1922 -0.0344482 29.6576 0.0705727 30.1026C0.175594 30.5475 0.402477 30.9545 0.725795 31.2778C1.04911 31.6011 1.45609 31.8279 1.9011 31.9329C2.34612 32.0379 2.81159 32.0169 3.24534 31.8723L8.48431 30.1262C10.6303 31.2675 13.0081 31.9049 15.4373 31.9902C17.8665 32.0754 20.2832 31.6061 22.5039 30.618C24.7246 29.6299 26.6911 28.149 28.2539 26.2875C29.8168 24.4261 30.935 22.2331 31.5236 19.875C32.1123 17.5169 32.156 15.0557 31.6513 12.6782C31.1467 10.3007 30.107 8.06944 28.6112 6.15372C27.1154 4.23799 25.2028 2.68819 23.0185 1.62193C20.8342 0.555675 18.4357 0.000997277 16.005 3.81039e-07ZM20.9286 19.6923H11.0815C10.755 19.6923 10.4419 19.5627 10.2111 19.3318C9.98027 19.101 9.85059 18.788 9.85059 18.4615C9.85059 18.1351 9.98027 17.8221 10.2111 17.5913C10.4419 17.3605 10.755 17.2308 11.0815 17.2308H20.9286C21.255 17.2308 21.5681 17.3605 21.7989 17.5913C22.0298 17.8221 22.1595 18.1351 22.1595 18.4615C22.1595 18.788 22.0298 19.101 21.7989 19.3318C21.5681 19.5627 21.255 19.6923 20.9286 19.6923ZM20.9286 14.7692H11.0815C10.755 14.7692 10.4419 14.6396 10.2111 14.4087C9.98027 14.1779 9.85059 13.8649 9.85059 13.5385C9.85059 13.212 9.98027 12.899 10.2111 12.6682C10.4419 12.4374 10.755 12.3077 11.0815 12.3077H20.9286C21.255 12.3077 21.5681 12.4374 21.7989 12.6682C22.0298 12.899 22.1595 13.212 22.1595 13.5385C22.1595 13.8649 22.0298 14.1779 21.7989 14.4087C21.5681 14.6396 21.255 14.7692 20.9286 14.7692Z" fill="#0F6FDE"/></g><defs><clipPath id="clip_engage"><rect width="32" height="32" fill="white"/></clipPath></defs></svg></span>
-              <span class="tab-label font-display font-bold text-white">Engage</span>
+              <span class="tab-label font-display font-bold text-white">Secure Communications</span>
             </div>
             <div class="tab-expand hidden">
-              <p class="text-sm text-gray-350 leading-relaxed">Connect with providers and patients through secure SMS, voice, video, and AI agents that can manage intake, collect patient information, and move work forward within active cases and workflows.</p>
+              <p class="text-sm text-gray-350 leading-relaxed">Message patients and providers over encrypted SMS, email, or chat. Every conversation links to a case with a full audit trail.</p>
             </div>
           </button>
 
-          <!-- Collect Tab -->
-          <button role="tab" aria-selected="false" aria-controls="tab-collect" data-tab="collect"
+          <!-- eSign Tab -->
+          <button role="tab" aria-selected="false" aria-controls="tab-esign" data-tab="esign"
             class="tab-btn w-full text-left p-5 rounded-xl border border-transparent bg-elevated/50 hover:bg-floating/30 focus-visible:outline-2 focus-visible:outline-purple-core transition-colors"
             style="transition: background-color 0.2s ease, border-color 0.2s ease;">
             <div class="flex items-center gap-3 mb-2">
               <span class="tab-icon w-8 h-8 shrink-0"><svg width="100%" height="100%" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.66154 14.3126C8.45801 13.1315 8.49464 11.9217 8.76923 10.7551C9.12615 9.21023 9.82923 8.13636 10.4769 8.13636C10.8723 8.13636 10.9292 8.23915 10.9569 8.28977C11.0923 8.53676 11.5723 9.96653 9.01385 15.4264C8.84762 15.0722 8.72916 14.6977 8.66154 14.3126ZM32 4.45455V26.5455C32 27.1964 31.7407 27.8208 31.279 28.2811C30.8174 28.7414 30.1913 29 29.5385 29H2.46154C1.8087 29 1.1826 28.7414 0.720968 28.2811C0.25934 27.8208 0 27.1964 0 26.5455V4.45455C0 3.80356 0.25934 3.17924 0.720968 2.71892C1.1826 2.2586 1.8087 2 2.46154 2H29.5385C30.1913 2 30.8174 2.2586 31.279 2.71892C31.7407 3.17924 32 3.80356 32 4.45455ZM9.23077 20.4091C9.53846 19.8584 9.83692 19.2861 10.1385 18.7001C11.7292 18.651 13.5554 17.5388 15.5954 15.3742C16.3646 16.8607 17.3462 17.7137 18.4985 17.9131C19.7292 18.1248 20.96 17.548 22.1815 16.1949C23.1046 17.0433 24.6662 17.9545 27.0738 17.9545C27.4003 17.9545 27.7133 17.825 27.9441 17.5948C28.175 17.3647 28.3046 17.0525 28.3046 16.7273C28.3046 16.402 28.175 16.0899 27.9441 15.8597C27.7133 15.6296 27.4003 15.5 27.0738 15.5C24.5046 15.5 23.3508 14.2997 22.8631 13.6294C22.7127 13.4261 22.5132 13.2641 22.2832 13.1586C22.0533 13.0531 21.8005 13.0078 21.5483 13.0268C21.296 13.0459 21.0529 13.1288 20.8415 13.2676C20.6301 13.4064 20.4573 13.5968 20.3392 13.8209C19.9877 14.5051 19.3046 15.5598 18.9169 15.4939C18.3015 15.388 17.5092 13.9598 17.1892 12.7325C17.1323 12.5116 17.0147 12.3108 16.8497 12.1528C16.6847 11.9948 16.4788 11.8858 16.2551 11.838C16.0314 11.7902 15.7988 11.8055 15.5833 11.8822C15.3679 11.9589 15.1781 12.094 15.0354 12.2723C13.6692 13.9506 12.5277 15.0014 11.6308 15.5951C14.0615 10.1261 13.6723 8.14097 13.1077 7.11159C12.8231 6.57773 12.0908 5.68182 10.4769 5.68182C8.56308 5.68182 7.02769 7.36932 6.37077 10.2013C6.02165 11.7017 5.97822 13.2568 6.24308 14.7744C6.50462 16.1397 7.03846 17.1875 7.80615 17.861C7.34462 18.7523 6.86923 19.6144 6.42154 20.4091H4.92308C4.59666 20.4091 4.28361 20.5384 4.05279 20.7686C3.82198 20.9987 3.69231 21.3109 3.69231 21.6364C3.69231 21.9619 3.82198 22.274 4.05279 22.5042C4.28361 22.7343 4.59666 22.8636 4.92308 22.8636H4.99077C4.33538 23.9559 3.89692 24.6416 3.88615 24.657C3.71029 24.9312 3.65089 25.2639 3.721 25.5818C3.79111 25.8997 3.98499 26.1768 4.26 26.3522C4.53501 26.5275 4.86861 26.5868 5.18743 26.5168C5.50624 26.4469 5.78414 26.2536 5.96 25.9794C6.01539 25.895 6.80154 24.6647 7.85077 22.8636H27.0769C27.4033 22.8636 27.7164 22.7343 27.9472 22.5042C28.178 22.274 28.3077 21.9619 28.3077 21.6364C28.3077 21.3109 28.178 20.9987 27.9472 20.7686C27.7164 20.5384 27.4033 20.4091 27.0769 20.4091H9.23077Z" fill="#0F6FDE"/></svg></span>
-              <span class="tab-label font-display font-bold text-white">Collect</span>
+              <span class="tab-label font-display font-bold text-white">eSign</span>
             </div>
             <div class="tab-expand hidden">
-              <p class="text-sm text-gray-350 leading-relaxed">Integrate forms and legally binding e-signatures directly into your workflows so required data is captured without disrupting the flow of work.</p>
+              <p class="text-sm text-gray-350 leading-relaxed">Send documents for signature, track completion in real time, and close the loop without chasing paper or PDFs.</p>
             </div>
           </button>
         </div>
 
         <!-- Tab content panels (right side) -->
         <div class="lg:w-3/5 relative min-h-[340px]">
-          <div id="tab-fax" role="tabpanel" class="tab-content active">
-            <img src="https://placehold.co/600x400/0A1628/0F6FDE?text=Fax+Interface" alt="Fax interface" class="w-full rounded-xl shadow-lg" />
+          <div id="tab-efax" role="tabpanel" class="tab-content active">
+            <div class="w-full rounded-xl shadow-lg flex items-center justify-center" style="aspect-ratio:3/2; background:#0A1628 !important;"><span class="font-display font-semibold text-2xl" style="color:#0F6FDE;">eFax User Interface</span></div>
           </div>
-          <div id="tab-automate" role="tabpanel" class="tab-content hidden">
-            <img src="https://placehold.co/600x400/0A1628/5BA3F5?text=Automate+Interface" alt="Automate interface" class="w-full rounded-xl shadow-lg" />
+          <div id="tab-docprocessing" role="tabpanel" class="tab-content hidden">
+            <div class="w-full rounded-xl shadow-lg flex items-center justify-center" style="aspect-ratio:3/2; background:#0A1628 !important;"><span class="font-display font-semibold text-2xl" style="color:#0F6FDE;">Document Processing User Interface</span></div>
           </div>
-          <div id="tab-engage" role="tabpanel" class="tab-content hidden">
-            <img src="https://placehold.co/600x400/0A1628/0F6FDE?text=Engage+Interface" alt="Engage interface" class="w-full rounded-xl shadow-lg" />
+          <div id="tab-securecomms" role="tabpanel" class="tab-content hidden">
+            <div class="w-full rounded-xl shadow-lg flex items-center justify-center" style="aspect-ratio:3/2; background:#0A1628 !important;"><span class="font-display font-semibold text-2xl" style="color:#0F6FDE;">Secure Communications User Interface</span></div>
           </div>
-          <div id="tab-collect" role="tabpanel" class="tab-content hidden">
-            <img src="https://placehold.co/600x400/0A1628/5BA3F5?text=Collect+Interface" alt="Collect interface" class="w-full rounded-xl shadow-lg" />
+          <div id="tab-esign" role="tabpanel" class="tab-content hidden">
+            <div class="w-full rounded-xl shadow-lg flex items-center justify-center" style="aspect-ratio:3/2; background:#0A1628 !important;"><span class="font-display font-semibold text-2xl" style="color:#0F6FDE;">eSign User Interface</span></div>
           </div>
         </div>
       </div>
@@ -787,10 +798,10 @@
   <!-- ============================================ -->
   <!-- TESTIMONIAL #2 -->
   <!-- ============================================ -->
-  <section class="py-20 md:py-24" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section class="py-20 md:py-24 dark-mesh">
     <div class="max-w-3xl mx-auto px-6 text-center reveal">
       <blockquote class="font-body text-xl md:text-2xl font-medium italic leading-relaxed text-white/90 mb-8">
-        &ldquo;Before, tracking a single referral meant checking three systems and calling two offices. Now the document moves itself. We just handle exceptions.&rdquo;
+        &ldquo;Before Docflow, tracking a single referral meant checking three systems and calling two offices. Now the document moves itself. We just handle exceptions.&rdquo;
       </blockquote>
       <div class="flex items-center justify-center gap-4">
         <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Michael Torres" class="w-12 h-12 rounded-full object-cover">
@@ -809,119 +820,93 @@
   <section id="pipeline" class="py-20 md:py-28 light-section">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 reveal">
-        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">From received to resolved. One governed flow.</h2>
-        <p class="text-gray-350 text-lg max-w-2xl mx-auto">Every document follows a clear path with clear ownership at every step.</p>
+        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">From received to resolved in one flow</h2>
+        <p class="text-gray-350 text-lg max-w-2xl mx-auto">See exactly where every document is and who owns it</p>
       </div>
 
-      <!-- Pipeline card -->
-      <div class="reveal bg-white rounded-2xl border border-gray-200 p-8 md:p-12" style="box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
-        <!-- Workflow steps -->
-        <div class="flex flex-wrap md:flex-nowrap items-start justify-center gap-4 md:gap-2">
+      <!-- Workflow steps -->
+      <div class="reveal flex flex-wrap md:flex-nowrap items-start justify-center gap-4 md:gap-2">
 
-          <!-- Step 1: Received -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Received</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">Multi-channel intake</p>
-            <p class="text-xs text-gray-500">Fax, form, or secure upload</p>
+        <!-- Step 1: Received -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           </div>
-
-          <!-- Connector 1 -->
-          <div class="hidden md:flex items-center pt-6">
-            <div class="pipeline-line w-10 h-[2px] rounded-full" style="background: repeating-linear-gradient(90deg, #CBD5E1 0, #CBD5E1 4px, transparent 4px, transparent 8px); animation-delay: 0s;"></div>
-          </div>
-
-          <!-- Step 2: Classified -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.12);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M9 5H2v7l6.29 6.29c.94.94 2.48.94 3.42 0l3.58-3.58c.94-.94.94-2.48 0-3.42L9 5Z"/><path d="M6 9.01V9"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Classified</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">AI-assisted parsing</p>
-            <p class="text-xs text-gray-500">Auto-tagged by document type</p>
-          </div>
-
-          <!-- Connector 2 -->
-          <div class="hidden md:flex items-center pt-6">
-            <div class="pipeline-line w-10 h-[2px] rounded-full" style="background: repeating-linear-gradient(90deg, #CBD5E1 0, #CBD5E1 4px, transparent 4px, transparent 8px); --delay: 0.6s;"></div>
-          </div>
-
-          <!-- Step 3: Routed -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.12);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Routed</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">Role-based access</p>
-            <p class="text-xs text-gray-500">Assigned to owner or team</p>
-          </div>
-
-          <!-- Connector 3 -->
-          <div class="hidden md:flex items-center pt-6">
-            <div class="pipeline-line w-10 h-[2px] rounded-full" style="background: repeating-linear-gradient(90deg, #CBD5E1 0, #CBD5E1 4px, transparent 4px, transparent 8px); --delay: 1.2s;"></div>
-          </div>
-
-          <!-- Step 4: Actioned -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.10);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Actioned</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">Secure messaging + eSign</p>
-            <p class="text-xs text-gray-500">Reviewed &amp; actioned</p>
-          </div>
-
-          <!-- Connector 4 -->
-          <div class="hidden md:flex items-center pt-6">
-            <div class="pipeline-line w-10 h-[2px] rounded-full" style="background: repeating-linear-gradient(90deg, #CBD5E1 0, #CBD5E1 4px, transparent 4px, transparent 8px); --delay: 1.8s;"></div>
-          </div>
-
-          <!-- Step 5: Archived -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(66,85,138,0.10);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#42558A" stroke-width="1.5"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Archived</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">Encrypted at rest</p>
-            <p class="text-xs text-gray-500">Stored with retention policy</p>
-          </div>
-
-          <!-- Connector 5 -->
-          <div class="hidden md:flex items-center pt-6">
-            <div class="pipeline-line w-10 h-[2px] rounded-full" style="background: repeating-linear-gradient(90deg, #CBD5E1 0, #CBD5E1 4px, transparent 4px, transparent 8px); --delay: 2.4s;"></div>
-          </div>
-
-          <!-- Step 6: Audited -->
-          <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
-            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-3" style="background: rgba(16,29,60,0.10);">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <p class="text-sm font-display font-bold text-gray-900 mb-1">Audited</p>
-            <p class="text-xs italic text-[#0F6FDE] mb-0.5">Audit trail enforced</p>
-            <p class="text-xs text-gray-500">Exportable activity log</p>
-          </div>
-
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Received</p>
+          <p class="text-xs text-gray-500">eFax, forms, secure upload</p>
         </div>
 
-        <!-- Capability badges -->
-        <div class="mt-8 pt-6 border-t border-gray-100">
-          <p class="text-xs font-medium text-gray-400 uppercase tracking-widest text-center mb-4">Capabilities powering this workflow</p>
-          <div class="flex flex-wrap items-center justify-center gap-3">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">Fax</span>
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">E-Signature</span>
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">Forms</span>
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">Secure Messaging</span>
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">Storage</span>
-            <span class="inline-flex items-center px-4 py-1.5 rounded-md text-xs font-medium border" style="border-color: #E2E8F0; color: #4A5578; background: #F8FAFC;">AI Automation</span>
+        <!-- Connector 1 -->
+        <div class="hidden md:flex items-center pt-7">
+          <div class="pipeline-line w-12 h-[3px] rounded-full" style="background: repeating-linear-gradient(90deg, #93B4DE 0, #93B4DE 5px, transparent 5px, transparent 10px); animation-delay: 0s;"></div>
+        </div>
+
+        <!-- Step 2: Classified -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M9 5H2v7l6.29 6.29c.94.94 2.48.94 3.42 0l3.58-3.58c.94-.94.94-2.48 0-3.42L9 5Z"/><path d="M6 9.01V9"/></svg>
           </div>
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Classified</p>
+          <p class="text-xs text-gray-500">AI reads and tags by type</p>
+        </div>
+
+        <!-- Connector 2 -->
+        <div class="hidden md:flex items-center pt-7">
+          <div class="pipeline-line w-12 h-[3px] rounded-full" style="background: repeating-linear-gradient(90deg, #93B4DE 0, #93B4DE 5px, transparent 5px, transparent 10px); --delay: 0.6s;"></div>
+        </div>
+
+        <!-- Step 3: Routed -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Routed</p>
+          <p class="text-xs text-gray-500">Assigned to the right person</p>
+        </div>
+
+        <!-- Connector 3 -->
+        <div class="hidden md:flex items-center pt-7">
+          <div class="pipeline-line w-12 h-[3px] rounded-full" style="background: repeating-linear-gradient(90deg, #93B4DE 0, #93B4DE 5px, transparent 5px, transparent 10px); --delay: 1.2s;"></div>
+        </div>
+
+        <!-- Step 4: Actioned -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Actioned</p>
+          <p class="text-xs text-gray-500">Reviewed, signed, or sent</p>
+        </div>
+
+        <!-- Connector 4 -->
+        <div class="hidden md:flex items-center pt-7">
+          <div class="pipeline-line w-12 h-[3px] rounded-full" style="background: repeating-linear-gradient(90deg, #93B4DE 0, #93B4DE 5px, transparent 5px, transparent 10px); --delay: 1.8s;"></div>
+        </div>
+
+        <!-- Step 5: Archived -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></svg>
+          </div>
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Archived</p>
+          <p class="text-xs text-gray-500">Stored with retention policy</p>
+        </div>
+
+        <!-- Connector 5 -->
+        <div class="hidden md:flex items-center pt-7">
+          <div class="pipeline-line w-12 h-[3px] rounded-full" style="background: repeating-linear-gradient(90deg, #93B4DE 0, #93B4DE 5px, transparent 5px, transparent 10px); --delay: 2.4s;"></div>
+        </div>
+
+        <!-- Step 6: Audited -->
+        <div class="flex flex-col items-center text-center flex-1 min-w-[120px]">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3" style="background: rgba(15,111,222,0.08);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0F6FDE" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <p class="text-sm font-display font-bold text-gray-900 mb-1">Audited</p>
+          <p class="text-xs text-gray-500">Full exportable activity log</p>
         </div>
 
       </div>
-
-      <!-- Concluding statement -->
-      <p class="text-gray-350 text-sm mt-6 text-center">Six tools. One pipeline. Nothing falls through.</p>
 
     </div>
   </section>
@@ -930,11 +915,11 @@
   <!-- ============================================ -->
   <!-- WHY DOCFLOW — COMPARISON GRID -->
   <!-- ============================================ -->
-  <section class="py-20 md:py-28" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section class="py-20 md:py-28 dark-mesh">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-14 reveal">
-        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">Other tools solve a piece. Docflow solves the flow.</h2>
-        <p class="text-gray-350 text-lg max-w-xl mx-auto">Most platforms handle one step. Docflow connects them all.</p>
+        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">Where single-purpose tools fall short</h2>
+        <p class="text-gray-350 text-lg max-w-xl mx-auto">No competitor covers the full healthcare workflow pipeline</p>
       </div>
 
       <!-- Comparison grid -->
@@ -943,7 +928,7 @@
           <thead>
             <tr class="border-b border-gray-550/20">
               <th class="text-left py-3 px-4 font-display font-semibold text-gray-350 w-[28%]">Capability</th>
-              <th class="text-center py-3 px-4 font-display font-semibold text-gray-550 w-[18%]">Cloud Fax<br/>Tools</th>
+              <th class="text-center py-3 px-4 font-display font-semibold text-gray-550 w-[18%]">Cloud eFax<br/>Tools</th>
               <th class="text-center py-3 px-4 font-display font-semibold text-gray-550 w-[18%]">Communication<br/>Platforms</th>
               <th class="text-center py-3 px-4 font-display font-semibold text-gray-550 w-[18%]">Document<br/>Processing</th>
               <th class="text-center py-3 px-4 font-display font-bold text-purple-core w-[18%] docflow-col rounded-t-lg">Docflow</th>
@@ -951,14 +936,14 @@
           </thead>
           <tbody>
             <tr class="border-b border-gray-550/10">
-              <td class="py-3 px-4 text-white font-medium">High-volume cloud fax</td>
+              <td class="py-3 px-4 text-white font-medium">Cloud eFax</td>
               <td class="py-3 px-4 text-center text-purple-core">&#10003;</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-purple-core font-bold docflow-col">&#10003;</td>
             </tr>
             <tr class="border-b border-gray-550/10">
-              <td class="py-3 px-4 text-white font-medium">AI document classification</td>
+              <td class="py-3 px-4 text-white font-medium">AI document processing</td>
               <td class="py-3 px-4 text-center text-gray-550">Partial</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-purple-core">&#10003;</td>
@@ -972,14 +957,14 @@
               <td class="py-3 px-4 text-center text-purple-core font-bold docflow-col">&#10003;</td>
             </tr>
             <tr class="border-b border-gray-550/10">
-              <td class="py-3 px-4 text-white font-medium">Secure messaging &amp; comms</td>
+              <td class="py-3 px-4 text-white font-medium">Secure communications</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-purple-core">&#10003;</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-purple-core font-bold docflow-col">&#10003;</td>
             </tr>
             <tr class="border-b border-gray-550/10">
-              <td class="py-3 px-4 text-white font-medium">E-signature &amp; forms</td>
+              <td class="py-3 px-4 text-white font-medium">eSign &amp; forms</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
               <td class="py-3 px-4 text-center text-gray-550">Partial</td>
               <td class="py-3 px-4 text-center text-gray-550">-</td>
@@ -996,7 +981,6 @@
         </table>
       </div>
 
-      <p class="text-center text-gray-350 text-sm mt-8 reveal">One platform. One audit trail. One team that never drops the ball.</p>
     </div>
   </section>
 
@@ -1007,36 +991,37 @@
   <section id="social-proof" class="py-20 md:py-28 light-section">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <div class="reveal">
-        <p class="text-sm font-body uppercase tracking-[0.2em] text-gray-550 mb-6">Don&rsquo;t take our word for it</p>
-        <p class="font-body font-bold text-6xl md:text-7xl text-purple-core mb-2">Top Rated</p>
-        <p class="text-gray-350 text-lg mb-2">on G2 for Healthcare Workflow Platforms</p>
-        <p class="text-white text-lg font-display font-semibold mb-6">Trusted by thousands of healthcare teams.</p>
+        <p class="text-sm font-body uppercase tracking-[0.2em] text-gray-550 mb-8">Don&rsquo;t take our word for it</p>
+        <p class="font-display font-bold text-5xl md:text-6xl text-purple-core mb-3">#25</p>
+        <p class="text-gray-350 text-lg mb-4">on G2 for all SaaS Platforms</p>
+        <p class="text-white text-[1rem] font-display font-semibold mb-8">For context, Salesforce is #61</p>
 
-        <!-- Stars -->
-        <div class="flex items-center justify-center gap-1 mb-10">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-          <span class="ml-2 text-sm text-gray-350 font-body">4.8 / 5 &middot; 7,253 verified reviews</span>
-        </div>
       </div>
 
       <!-- Mini metric cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 reveal-stagger mb-10">
         <div class="reveal-child bg-elevated rounded-xl border border-gray-550/15 p-6 text-center">
-          <p class="font-body font-bold text-3xl text-white mb-1">99.99%</p>
-          <p class="text-sm text-gray-350">Uptime SLA</p>
+          <p class="font-body font-bold text-3xl text-white mb-1">10M+</p>
+          <p class="text-sm text-gray-350">Documents processed monthly</p>
         </div>
         <div class="reveal-child bg-elevated rounded-xl border border-gray-550/15 p-6 text-center">
-          <p class="font-body font-bold text-3xl text-white mb-1">&lt; 2 min</p>
-          <p class="text-sm text-gray-350">Time to first fax</p>
+          <p class="font-body font-bold text-3xl text-white mb-1">52 sec</p>
+          <p class="text-sm text-gray-350">Average eFax delivery time</p>
         </div>
         <div class="reveal-child bg-elevated rounded-xl border border-gray-550/15 p-6 text-center">
-          <p class="font-body font-bold text-3xl text-white mb-1">18 years</p>
-          <p class="text-sm text-gray-350">In production</p>
+          <p class="font-body font-bold text-3xl text-white mb-1">100%</p>
+          <p class="text-sm text-gray-350">HIPAA audit pass rate</p>
         </div>
+      </div>
+
+      <!-- Stars -->
+      <div class="flex items-center justify-center gap-1 reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBBF24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        <span class="ml-2 text-sm text-gray-350 font-body">4.8 / 5 &middot; 7,253 verified reviews</span>
       </div>
 
     </div>
@@ -1046,15 +1031,15 @@
   <!-- ============================================ -->
   <!-- ROLE-BASED VALUE PROPS -->
   <!-- ============================================ -->
-  <section id="roles" class="py-20 md:py-28" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section id="roles" class="py-20 md:py-28 dark-mesh">
     <div class="max-w-5xl mx-auto px-6">
       <!-- Section heading with sparkle decorations -->
       <div class="text-center mb-16 reveal">
-        <h2 class="font-display font-semibold text-4xl md:text-6xl tracking-tighter text-white leading-[1.1]">Built to <span class="relative inline-block"><svg class="absolute -top-3 -right-5 md:-top-5 md:-right-7" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5L12 2z" fill="#0F6FDE" opacity="0.75"/></svg><svg class="absolute -bottom-1 -left-5 md:-bottom-2 md:-left-7" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5L12 2z" fill="#5BA3F5" opacity="0.65"/></svg>power</span><br>every role in healthcare</h2>
+        <h2 class="font-display font-semibold text-4xl md:text-6xl tracking-tighter text-white leading-[1.1]">Powers every role in healthcare</h2>
       </div>
 
       <!-- Role cards grid -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-4xl mx-auto mb-16 reveal p-2 rounded-2xl" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04);" role="tablist">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 max-w-4xl mx-auto mb-16 reveal" role="tablist">
 
         <!-- Operations card -->
         <div class="role-card-wrapper role-card-wrapper-active" data-role-wrapper="ops">
@@ -1091,23 +1076,20 @@
 
       <!-- Content area below cards -->
       <div class="role-content-area reveal" id="roleContent">
-        <div class="flex flex-col md:flex-row gap-8 md:gap-16">
-          <!-- Left column: heading + CTA -->
+        <div class="flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
+          <!-- Left column: heading -->
           <div class="md:w-[42%]">
-            <h3 id="roleHeading" class="font-display font-bold text-2xl md:text-[2.25rem] tracking-tighter text-white mb-8 leading-[1.15]">Visibility across every workflow, in real time</h3>
-            <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium border border-gray-550/30 text-white hover:border-purple-core hover:text-purple-core focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: border-color 0.2s ease, color 0.2s ease;">
-              <span id="roleCta">Explore operations solutions</span> <span aria-hidden="true">&rarr;</span>
-            </a>
+            <h3 id="roleHeading" class="font-display font-bold text-2xl md:text-[2.25rem] tracking-tighter text-white mb-8 leading-[1.15]">Know where every document is, without asking</h3>
           </div>
           <!-- Right column: 2 value prop blocks -->
           <div class="md:w-[58%] space-y-6" id="roleProps">
             <div>
-              <p class="font-display font-bold text-base md:text-lg text-white mb-1">Track every document</p>
-              <p class="text-sm md:text-base leading-relaxed" style="color: #B8D4F8 !important;">See the status of every fax, referral, and prior auth across all queues without chasing down updates.</p>
+              <p class="font-display font-bold text-base md:text-lg text-white mb-1">Real time tracking</p>
+              <p class="text-sm md:text-base leading-relaxed" style="color: #B8D4F8 !important;">See every fax, referral, and prior auth moving through your queues on one dashboard.</p>
             </div>
             <div>
-              <p class="font-display font-bold text-base md:text-lg text-white mb-1">Hit every SLA</p>
-              <p class="text-sm md:text-base leading-relaxed" style="color: #B8D4F8 !important;">Automated alerts flag at-risk documents before deadlines slip, so nothing falls through.</p>
+              <p class="font-display font-bold text-base md:text-lg text-white mb-1">Catch delays before they cost you</p>
+              <p class="text-sm md:text-base leading-relaxed" style="color: #B8D4F8 !important;">Get flagged the moment a document is at risk of missing its SLA window.</p>
             </div>
           </div>
         </div>
@@ -1122,7 +1104,7 @@
   <section class="py-20 md:py-24 light-section">
     <div class="max-w-3xl mx-auto px-6 text-center reveal">
       <blockquote class="font-body text-xl md:text-2xl font-medium italic leading-relaxed text-white/90 mb-8">
-        &ldquo;We evaluated six platforms. This was the only one that understood healthcare workflows aren&rsquo;t just about moving documents &mdash; they&rsquo;re about making sure the right person acts on them at the right time.&rdquo;
+        &ldquo;We evaluated six platforms. Docflow was the only one that understood healthcare workflows aren&rsquo;t just about moving documents, they&rsquo;re about making sure the right person acts on them at the right time.&rdquo;
       </blockquote>
       <div class="flex items-center justify-center gap-4">
         <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Rachel Kim" class="w-12 h-12 rounded-full object-cover">
@@ -1138,20 +1120,20 @@
   <!-- ============================================ -->
   <!-- FINAL CONVERSION SECTION -->
   <!-- ============================================ -->
-  <section class="relative py-24 md:py-32 overflow-hidden" style="background: radial-gradient(ellipse at 30% 20%, rgba(15,111,222,0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(91,163,245,0.05) 0%, transparent 50%), #0A1628;">
+  <section class="relative py-24 md:py-32 overflow-hidden dark-mesh">
 
     <div class="relative max-w-2xl mx-auto px-6 text-center reveal">
-      <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">Stop managing documents. Start moving work forward.</h2>
-      <p class="text-gray-350 text-lg mb-10">Join 7,000+ healthcare organizations that turned document chaos into automated workflows. Start free in under 2 minutes.</p>
+      <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tighter text-white mb-4">Ready to replace the patchwork?</h2>
+      <p class="text-gray-350 text-lg mb-10">Join 7,000+ healthcare organizations already running on Docflow<br>No credit card, live in minutes</p>
 
-      <!-- CTA: Email + Try for free -->
+      <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
-        <div class="flex items-center rounded-full border border-gray-550/30 bg-white/5 overflow-hidden" style="backdrop-filter: blur(8px);">
-          <input type="email" placeholder="Enter your email" class="bg-transparent text-white text-sm px-5 py-3 outline-none placeholder-gray-350 w-56 md:w-64" />
-          <button class="bg-purple-core text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-purple-light active:scale-95 focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: background-color 0.2s ease, transform 0.15s ease;">
-            Try for free
-          </button>
-        </div>
+        <a href="#" class="bg-purple-core text-white text-sm font-semibold px-8 py-3 rounded-full hover:bg-purple-light active:scale-95 focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: background-color 0.2s ease, transform 0.15s ease;">
+          Try for free
+        </a>
+        <a href="#" class="inline-flex items-center px-7 py-3 rounded-full text-sm font-medium border border-gray-550/30 text-white hover:border-purple-core hover:text-purple-core focus-visible:outline-2 focus-visible:outline-purple-core" style="transition: border-color 0.2s ease, color 0.2s ease;">
+          Request Demo
+        </a>
       </div>
 
       <p class="text-xs text-gray-350 font-body flex items-center justify-center gap-1.5">
@@ -1179,7 +1161,7 @@
             </svg>
           </a>
           <p class="text-sm text-gray-350 leading-relaxed mb-4">HIPAA-compliant workflow orchestration for healthcare.</p>
-          <p class="text-xs text-gray-550 leading-relaxed mb-5">95 3rd St, 2nd Floor<br>San Francisco, CA 94103<br>United States</p>
+          <p class="text-xs text-gray-550 leading-relaxed mb-5">120 5th St, 3rd Floor<br>San Francisco, CA 94107<br>United States</p>
           <!-- Social links -->
           <div class="flex items-center gap-4">
             <a href="#" class="text-gray-350 hover:text-white" style="transition: color 0.2s ease;" aria-label="LinkedIn">
@@ -1198,10 +1180,10 @@
         <div>
           <h4 class="text-sm font-display font-semibold text-white mb-4">Products</h4>
           <ul class="space-y-2.5">
-            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Fax</a></li>
-            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Automate</a></li>
-            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Engage</a></li>
-            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Collect</a></li>
+            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">eFax</a></li>
+            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Document Processing</a></li>
+            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Secure Communications</a></li>
+            <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">eSign</a></li>
             <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">Pricing</a></li>
             <li><a href="#" class="text-sm text-gray-350 hover:text-white transition-colors">API Docs</a></li>
           </ul>
@@ -1334,35 +1316,35 @@
     // ---- Role Cards (Amplemarket style) ----
     const roleData = {
       ops: {
-        heading: 'Visibility across every workflow, in real time',
+        heading: 'Know where every document is, without asking',
         cta: 'Explore operations solutions',
         props: [
-          { title: 'Track every document', desc: 'See the status of every fax, referral, and prior auth across all queues without chasing down updates.' },
-          { title: 'Hit every SLA', desc: 'Automated alerts flag at-risk documents before deadlines slip, so nothing falls through.' }
+          { title: 'Real time tracking', desc: 'See every fax, referral, and prior auth moving through your queues on one dashboard.' },
+          { title: 'Catch delays before they cost you', desc: 'Get flagged the moment a document is at risk of missing its SLA window.' }
         ]
       },
       compliance: {
-        heading: 'Audit-ready from day one, without the scramble',
+        heading: 'Audit-ready by default, not by deadline',
         cta: 'Explore compliance solutions',
         props: [
-          { title: 'Automatic audit trails', desc: 'Every document interaction is logged with tamper-evident records. No manual reconstruction.' },
-          { title: 'One-click reports', desc: 'Generate HIPAA and SOC 2 compliance reports instantly when auditors come calling.' }
+          { title: 'Tamper-proof audit trails', desc: 'Every view, edit, send, and signature is recorded without manual reconstruction.' },
+          { title: 'Compliance reports on demand', desc: 'Generate the exact report auditors need in seconds, not days of spreadsheet work.' }
         ]
       },
       it: {
-        heading: 'Connect your EHR in hours, not months',
+        heading: 'Integrate with your EHR in hours',
         cta: 'Explore IT solutions',
         props: [
-          { title: 'Pre-built connectors', desc: 'Production-ready integrations for Epic, Cerner, and athenahealth out of the box.' },
-          { title: 'APIs your team will love', desc: 'REST APIs, webhooks, and full OpenAPI docs so your engineers ship fast.' }
+          { title: 'Pre-built connectors', desc: 'Production-ready, ready to deploy integrations for Epic, Cerner, and Athenahealth.' },
+          { title: 'Developer-first API', desc: 'REST, webhooks, OpenAPI docs, and sandbox environments so your team ships on day one.' }
         ]
       },
       admin: {
-        heading: 'One inbox instead of five browser tabs',
+        heading: 'Less tab-switching, more patient care',
         cta: 'Explore front desk solutions',
         props: [
-          { title: 'Unified intake', desc: 'Fax, secure messages, and forms all land in a single AI-sorted inbox.' },
-          { title: 'One-click follow-ups', desc: 'Respond to patients via SMS, fax, or secure message without switching tools.' }
+          { title: 'Every channel, one screen', desc: 'eFax, secure messages, and forms land in a single pre-sorted inbox.' },
+          { title: 'Respond without switching tools', desc: 'Reply to patients via SMS, fax, or secure message from the same place.' }
         ]
       }
     };
@@ -1371,7 +1353,7 @@
     const roleWrappers = document.querySelectorAll('[data-role-wrapper]');
     const roleContentArea = document.getElementById('roleContent');
     const roleHeading = document.getElementById('roleHeading');
-    const roleCta = document.getElementById('roleCta');
+    const roleCta = document.getElementById('roleCta'); // may be null
     const roleProps = document.getElementById('roleProps');
 
     roleCards.forEach(card => {
@@ -1390,7 +1372,7 @@
         roleContentArea.classList.add('fading');
         setTimeout(() => {
           roleHeading.textContent = data.heading;
-          roleCta.textContent = data.cta;
+          if (roleCta) roleCta.textContent = data.cta;
           roleProps.innerHTML = data.props.map(p =>
             `<div><p class="font-display font-bold text-base md:text-lg text-white mb-1">${p.title}</p><p class="text-sm md:text-base leading-relaxed" style="color: #B8D4F8 !important;">${p.desc}</p></div>`
           ).join('');
