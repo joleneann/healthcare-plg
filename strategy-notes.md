@@ -31,7 +31,7 @@ Docflow is evolving from cloud fax (a standalone cloud fax tool) into **a unifie
 3. **Orchestration** (Rules engine, routing, ownership assignment, case management) — Move work to the right person with clear accountability
 4. **Action** (E-signature, secure messaging, SMS, voice, AI agents) — Complete the work and close the loop
 
-**Adam's 5 core beliefs that must show on the website:**
+**CEO's 5 core beliefs that must show on the website:**
 1. **Documents → Actions:** "What matters is not just receiving the document. It's what happens next."
 2. **Workflow orchestration > data management:** "Healthcare's future won't be defined by who has the best data. It'll be defined by who has the best flow."
 3. **Hybrid automation:** "Human when judgment matters. Automation when speed matters." The handoff between automation and human judgment is where the real value is.
