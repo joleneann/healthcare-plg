@@ -31,9 +31,6 @@ Top-of-funnel conversion page demonstrating:
 - Work-email gate positioned *after* value delivery, not before
 - Inline PLG strategy annotations ("Strategy Notes" toggle)
 
-### 3. `dashboard.html` — Product Dashboard (Activation → Retention)
-Post-activation retention and expansion surface with multi-state behavior (new user → active trial → approaching limit → limit reached).
-
 ---
 
 ## Methodology
