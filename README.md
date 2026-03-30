@@ -2,10 +2,6 @@
 
 This is a demonstration of how I approach PLG redesign for a regulated healthcare SaaS product. Fully functional prototype built in HTML/CSS.
 
-**Live demos:**
-- [Marketing Website](https://joleneann.github.io/healthcare-plg/) — Visit → Signup conversion
-- [Onboarding Flow](https://joleneann.github.io/healthcare-plg/signup-flow.html) — Signup → Activation
-
 ---
 
 ## What This Is
@@ -19,6 +15,8 @@ The north-star metric throughout: **Revenue per Visitor** (conversion rate × AC
 ## Artifacts
 
 ### 1. `index.html` — Marketing Website (Visit → Signup)
+**[Live demo](https://joleneann.github.io/healthcare-plg/)**
+
 Top-of-funnel conversion page demonstrating:
 - Role-based segmentation and progressive disclosure
 - JTBD-aligned tabbed product demos (Fax / Automate / Engage / Collect)
@@ -27,6 +25,8 @@ Top-of-funnel conversion page demonstrating:
 - Persistent, context-aware CTAs across scroll depth
 
 ### 2. `signup-flow.html` — Onboarding Flow (Signup → Activation)
+**[Live demo](https://joleneann.github.io/healthcare-plg/signup-flow.html)**
+
 5-screen self-serve activation journey demonstrating:
 - Progressive segmentation (industry → role → team size → title)
 - JTBD routing to recommended module path
