@@ -59,17 +59,17 @@ A 13-section conversion page built on CXL landing page optimization principles a
 
 **[Live demo](https://joleneann.github.io/healthcare-plg/signup-flow.html)**
 
-A 6-screen self-serve activation journey. Each screen has a "Strategy Notes" toggle that reveals the PLG rationale behind every design decision. The flow demonstrates sandbox-first activation, post-value monetization, and JTBD-driven routing.
+A 5-screen self-serve activation journey. Each screen has a "Strategy Notes" toggle that reveals the PLG rationale behind every design decision. The flow demonstrates sandbox-first activation, post-value monetization, and JTBD-driven routing.
 
 **Screen-by-screen breakdown:**
 
 | Screen | Name | What Happens | PLG Principle |
 |---|---|---|---|
-| **1** | Choose | User selects a problem (document delivery, processing, communication, signatures). Selection routes to the matching product module | **Jobs-to-be-Done routing.** Reduces cognitive load from 4 products to 1 recommended path. If the user completed segmentation, we auto-recommend based on industry + role (25-40% higher first-action completion per Chameleon/Appcues research) |
-| **2** | Try | Persistent product sidebar with sandbox placeholder + demo video per module. Users can switch between products without leaving the page | **Sandbox-first activation.** Users see and interact with the product before giving any personal information. Two engagement modes: hands-on sandbox or passive video. The sidebar enables cross-sell discovery |
+| **1** | Choose | User selects a problem (document delivery, processing, communication, signatures). Selection routes to the matching product sandbox. Zero friction: no email, no form | **Jobs-to-be-Done routing.** Reduces cognitive load from 4 products to 1 recommended path. "Explore" option catches undecided users |
+| **2** | Try | Consolidated sandbox with persistent product sidebar, interactive mockup per module, and demo video. Users fill realistic form fields (fax number, document, recipient) and see animated results (delivery confirmation, AI classification, encryption proof) | **Interactive mockups create psychological ownership.** Users configure real-looking inputs and see real-looking results before giving personal information. The CTA appears at peak engagement (after seeing the result), not before. Sidebar enables cross-sell discovery between modules |
 | **3** | Sign Up | Post-value email gate with Google/Microsoft SSO buttons + email/password form. HIPAA, SOC 2, and G2 trust badges | **Post-value email gate.** Email is asked after sandbox interaction, not before. Conversion is 3x higher after the user has experienced value. SSO buttons serve dual purpose: convenience + enterprise detection (a @largeclinic.org Microsoft login is a PQL signal) |
-| **4** | Profile | Progressive 5-question segmentation: industry, role, team size, title, attribution. All questions visible on one screen with pill-style selection | **Progressive profiling.** Multi-step cascading flows convert 86% higher (HubSpot) and reduce completion time 20-40% (NNGroup). Industry + role power module recommendation. Company size + title power PQL scoring. Attribution closes the marketing ROI loop |
-| **5** | Dashboard | Personalized next steps (segment-driven), Docflow Products sidebar with active/tried badges, social proof ("Teams like yours"), work-email CTA for sandbox users | **Activation loop + expansion.** Next steps create the second activation event. Product sidebar shows depth - unexplored modules create cross-sell desire. Trial countdown creates urgency without a hard paywall |
+| **4** | Profile | Progressive segmentation: industry, role, team size, title, attribution. Work email users see shortened 2-question version (title + how did you hear about us) | **Progressive profiling.** Multi-step cascading flows convert 86% higher (HubSpot) and reduce completion time 20-40% (NNGroup). Industry + role power module recommendation. Company size + title power PQL scoring. Attribution closes the marketing ROI loop |
+| **5** | Dashboard | Personalized next steps as checklist cards (segment-driven), Docflow Products sidebar with active/tried badges, cross-sell suggestion for untried modules, "Teams like yours" social proof | **Activation loop + expansion.** Next steps create the second activation event. Cross-sell card suggests untried modules. Product sidebar shows depth, creating expansion desire. Trial countdown creates urgency without a hard paywall |
 
 ---
 
